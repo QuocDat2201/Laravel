@@ -59,6 +59,7 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
+            ->orderBy('orders.id', 'Desc')
             ->paginate(8);
 
 

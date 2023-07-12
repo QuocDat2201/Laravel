@@ -56,6 +56,7 @@
             </div>
         </div>
     </div>
+
 <?php $__env->stopSection(); ?>
 <script>
     // $(function ad() {
