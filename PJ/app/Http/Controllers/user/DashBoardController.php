@@ -94,7 +94,7 @@ class DashBoardController extends Controller
         return view('user/dashboard/blogrm2');
     }
     public function contacts()
-    {
+    {   
         return view('user/dashboard/contacts');
     }
     public function aboutus()
