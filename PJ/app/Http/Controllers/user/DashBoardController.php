@@ -279,12 +279,12 @@ class DashBoardController extends Controller
 
 
         $id_user = Users::orderBy('id', 'desc')->take(1)->value('id');
-        $order = [
-            'user_id' => $id_user,
-            'status' => 0,
-        ];
+        // $order = [
+        //     'user_id' => $id_user,
+        //     'status' => 0,
+        // ];
 
-        Orders::create($order);
+        // Orders::create($order);
 
         return redirect('/');
     }

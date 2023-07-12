@@ -106,13 +106,7 @@
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ url('/shop') }}">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="{{ url('/pages/aboutus') }}">About Us</a></li>
-                                    <li><a href="{{ url('/pages/shoppingcart') }}">Shopping Cart</a></li>
-
-                                </ul>
-                            </li>
+                            <li><a href="{{ url('/pages/aboutus') }}">About Us</a></li>
                             <li><a href="{{ url('/blog') }}">Blog</a></li>
                             <li><a href="{{ url('/contacts') }}">Contacts</a></li>
                         </ul>

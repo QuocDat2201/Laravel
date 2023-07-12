@@ -84,13 +84,17 @@ class CartController extends Controller
         $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
         $currentDate = Carbon::now()->toDateString();
 
-        // $data = [
-        //     'user_id' => $user_id,
-        //     'status' => 0,
-        //     'created_at' => $currentDate,
-        // ];
-        $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->take(1)->value('id');
-        // Orders::create($data);
+        $data = [
+            'user_id' => $user_id,
+            'status' => 0,
+            'created_at' => $currentDate,
+        ];
+        Orders::create($data);
+        $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->take(1)->get();
+        
+
+        $order_id=$order_id->value('id');
+        // dd($order_id);
         $cart = $request->session()->get('cart');
 
         foreach ($cart as $item) {
@@ -273,6 +277,7 @@ class CartController extends Controller
     public function updatesavedcart(Request $request)
     {
         $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
+      
         $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->first();
         $data = [
             'quantity_product_order' => $request->quantity,
