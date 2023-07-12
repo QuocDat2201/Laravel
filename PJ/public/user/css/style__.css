@@ -91,7 +91,12 @@
     vertical-align: middle;
   }
   
-  
+  #content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   
   
   

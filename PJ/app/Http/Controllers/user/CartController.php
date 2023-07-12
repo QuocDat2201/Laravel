@@ -71,6 +71,7 @@ class CartController extends Controller
             };
             $data = [
                 'cart' => $product,
+
             ];
             // dd($data['cart']);
             return view('user.dashboard.cart.cartsaved1')->with($data);
@@ -323,8 +324,10 @@ class CartController extends Controller
         $product = [[]];
         $id = 0;
         foreach ($order_product as $item) {
-            $id_order_product = Order_product::where('product_id', '=', $item['product']->id)->where('order_id', '=', $order_id)->value('id');
-
+            $id_order_product = Order_product::where('product_id', '=', $item['product']->id)->where('order_id', '=', $order_id->id)->get();
+            $id_order_product=$id_order_product[0]->product_id;
+            // $id_order_product=$id_order_product->value('id');
+           
             if ($id > 0) {
                 foreach ($product as $x) {
                     if ($x['id'] == $item->product_id) {
@@ -339,10 +342,12 @@ class CartController extends Controller
                 'quantity' => $item->quantity_product_order,
                 'photo' => DB::table('products')->where('id', '=', $item->product_id)->value('photo'),
             ];
-            $quantity_product = Products::find($item['product']->id)->value('quantity');
+            $quantity_product = Products::find(3);
+            $quantity_product= $quantity_product->quantity;
             $data1 = [
-                'quantity' => $quantity_product - $item['quantity'],
+                'quantity' => $quantity_product - $item->quantity_product_order,
             ];
+            // dd($data1);
             Products::find($id_order_product)->update($data1);
             $id++;
         };
@@ -361,14 +366,14 @@ class CartController extends Controller
             'status' => 1,
             'update_at' => $currentDate,
         ];
-        Orders::find($order_id)->update($data);
+        Orders::find($order_id->id)->update($data);
         return redirect('pages/shoppingcart');
     }
     public function payment(Request $request)
     {
         $cart = $request->session()->get('cart');
         if ($cart == null) {
-            $request->session()->put('er', '<===');
+            $request->session()->put('er', '');
             return redirect('pages/shoppingcart');
         }
         foreach ($cart as $item) {
@@ -379,7 +384,7 @@ class CartController extends Controller
                 
             if(($item['quantity'])>$quantity_product ){
                 
-                return redirect()->back()->with('error', 'ERRORR Quantyti');
+                return redirect()->back()->with('er', 'ERRORR Quantyti');
             }
         }
         $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
@@ -391,7 +396,7 @@ class CartController extends Controller
         Orders::create($order);
 
         // $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
-        $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->value('id');
+        $order_id = DB::table('orders')->orderBy('id','desc')->where('user_id', '=', $user_id)->where('status', '=', 0)->value('id');
         $currentDate = Carbon::now()->toDateString();
         
         foreach ($cart as $item) {

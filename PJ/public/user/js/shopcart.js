@@ -94,6 +94,9 @@ var noButton = document.getElementById('noButton');
 var notification = document.getElementById('notification');
 
 noButton.addEventListener('click', function () {
+    if(session('er')){
+        return -2;
+    }
   // Kiểm tra điều kiện trước khi thực hiện hàm
 //   if (!sesion('error')) {
     // Ẩn thông báo nếu đang hiển thị

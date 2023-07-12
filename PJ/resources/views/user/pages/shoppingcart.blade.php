@@ -76,7 +76,7 @@
                                 @endif
                                     <tr>
                                         <td></td>
-                                    <td style="color:red"><b>{{ session('error') }}</b></td>
+                                    <td style="color:red"><b>{{ session('er') }}</b></td>
                                     <td></td>
                                     </tr>
                             </tbody>
@@ -89,9 +89,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn update__btn">
-                                <a href="{{ url('shop/savecart') }}"><i class="fa fa-spinner"></i> Save cart</a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -108,7 +106,10 @@
                             </li>
                         </ul>
                        <div> <button id="noButton" style="border:1px;display:block;width:300px;height:50px;background-color:red"  > <a href="{{ url('shop/payment') }}"  id="payment" style="color:aliceblue;font-size:30px " >Payment</a></button></div>
-                       
+                      
+                       <br> <div class="continue__btn update__btn">
+                        <a href="{{ url('shop/savecart') }}" style="border:1px;display:block;width:300px;height:50px;text-align:center"  ><i class="fa fa-spinner"></i> Save cart</a>
+                    </div>
                     </div>
                 </div>
             </div>
