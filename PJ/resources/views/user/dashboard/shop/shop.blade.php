@@ -24,7 +24,7 @@
                             data-setbg="{{ asset('user') }}/img/product/{{ $item->photo }}">
                             {{-- <span class="label">Sale</span> --}}
                             <ul class="product__hover">
-                                <li><a href="{{ url('shop/id/' . $item->id) }}"><img style="width:40px;height:40px"
+                                <li><a href="{{ url('shop/' . $item->id) }}"><img style="width:40px;height:40px"
                                             src="{{ asset('user') }}/img/icon/search.png" alt=""></a>
                                 </li>
                                 <li><a id="cart" class="addorder" data-id="{{ $item->id }}" href=""><img
@@ -41,7 +41,7 @@
                         <div class="product__item__text">
                             <h6>{{ $item->name }}</h6>
                             <a  data-id="{{ $item->id }}" href="{{ url('/shop/buy/') }}/{{ $item->id }}" class="btn btn-warning add-cart addorder"
-                                style="width:185px;border-radius:6px;" align="center">BUY</a>
+                                style="width:175px;border-radius:6px;" align="center">BUY</a>
                             {{-- <i class="fa fa-shopping-basket" aria-hidden="true"></i> --}}
                             <h5>${{ $item->price }}</h5>
                         </div>

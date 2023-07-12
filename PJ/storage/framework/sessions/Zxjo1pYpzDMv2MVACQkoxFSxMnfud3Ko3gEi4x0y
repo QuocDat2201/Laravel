@@ -1,1 +1,1 @@
-a:6:{s:6:"_token";s:40:"YU82RBSSS4VLNxEaD8MyYX5oinGKOBMOOYGzTpX6";s:9:"_previous";a:1:{s:3:"url";s:21:"http://127.0.0.1:8000";}s:6:"_flash";a:2:{s:3:"old";a:0:{}s:3:"new";a:0:{}}s:7:"role_id";i:1;s:10:"account_id";i:44;s:8:"username";s:1:"s";}
+a:7:{s:6:"_token";s:40:"YU82RBSSS4VLNxEaD8MyYX5oinGKOBMOOYGzTpX6";s:9:"_previous";a:1:{s:3:"url";s:36:"http://127.0.0.1:8000/shop/savedcart";}s:6:"_flash";a:2:{s:3:"old";a:0:{}s:3:"new";a:0:{}}s:2:"er";s:4:"<===";s:7:"role_id";i:2;s:10:"account_id";i:43;s:8:"username";s:1:"a";}
