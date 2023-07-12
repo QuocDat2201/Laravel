@@ -8,6 +8,9 @@
     <title>Profile</title>
 </head>
 <body>
+    <div>
+         <a href="/" class="back">Back to home page</a>
+    </div>
     <div class="water-border">
     </div>
     <form>

@@ -8,6 +8,9 @@
     <title>Sign In</title>
 </head>
 <body>
+    <div>
+         <a href="/" class="back1">Back to home page</a>
+    </div>
     <div class="water-border">
     <form method="post" action="{{url('login/signincheck')}}">
     @csrf

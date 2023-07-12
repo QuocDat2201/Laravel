@@ -151,3 +151,10 @@ input:-webkit-autofill:active{
     border-radius:58% 42% 51% 49% / 39% 55% 45% 61%  ;
     
 }
+.back2{
+    position: relative;
+    font-family:"Ink Free","MV Boli",sans-serif;
+    color:rgb(77, 55, 13);
+    font-weight: 900;
+    left: -150px;
+}

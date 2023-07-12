@@ -8,6 +8,9 @@
     <title>Sign Up</title>
 </head>
 <body>
+    <div>
+         <a href="/" class="back2">Back to home page</a>
+    </div>
     <div class="water-border">
     <form method="post" action="{{url('login/add')}}">
     @csrf
@@ -29,7 +32,7 @@
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-field">
-                <input type="email" class="input" name="email" placeholder="Email" required>
+                <input type="text" class="input" name="email" placeholder="Email" required>
                 <i class='bx bx-envelope'></i>
             </div>
             <div class="input-field">
@@ -38,6 +41,5 @@
         </div>
     </form>
     </div>
-    <a href="{{url('index')}}">-> Back to Home Page</a>
 </body>
 </html>
