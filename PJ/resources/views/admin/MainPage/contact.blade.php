@@ -46,7 +46,7 @@
     </div>
     <div class="container">
         <table class="table table-bordered">
-            <thead>
+            <thead align="center">
                 <tr>
                     <th>Username</th>
                     <th>Phone Number</th>
