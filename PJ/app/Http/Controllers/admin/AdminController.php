@@ -195,9 +195,9 @@ class AdminController extends Controller
         $data = [
             'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
-        $products = DB::table('products')->orderBy('id','Asc')
+        $products = DB::table('products')->orderBy('id','Desc')
             ->join('category', 'products.categogy_id', '=', 'category.id')->select('products.*', 'category.id as category_id', 'category.name as category_name')
-            ->paginate(5);
+            ->paginate(8);
         $category = DB::table('category')
             ->get();
 
@@ -271,7 +271,7 @@ class AdminController extends Controller
         $data = [
             'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
-        $products = DB::table('products')
+        $products = DB::table('products')->orderBy('id','Desc')
             ->join('category', 'products.categogy_id', '=', 'category.id')->select('products.*', 'category.id as category_id', 'category.name as category_name')
             ->paginate(5);
 
@@ -313,7 +313,7 @@ class AdminController extends Controller
         $data = [
             'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
-        $account = DB::table('account')
+        $account = DB::table('account')->orderBy('id','Desc')
             ->join('role', 'account.role_id', 'role.id')
             ->join('users', 'account.id', 'users.account_id')
             ->select(
@@ -476,7 +476,7 @@ class AdminController extends Controller
         $data = [
             'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
-            $contact = DB::table('account')
+            $contact = DB::table('account')->orderBy('contacts.id','Desc')
             ->join('contacts', 'account.id', '=', 'contacts.account_id')
             ->join('users', 'account.id', '=', 'users.account_id')
             ->select(
@@ -558,7 +558,7 @@ class AdminController extends Controller
         $product_name = $request->get('search_product');
         $data = [
             'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
-            ->where('products.name', 'like','%'. $product_name . '%')
+            ->where('products.name', 'like','%'. $product_name . '%')->orwhere('category.name','like','%'.$product_name.'%')
             ->select('products.*', 'category.name as category_name')
             ->paginate(5)->appends(request()->query()),
             'user' => DB::table('users')->where('account_id', session('account_id'))->first()
