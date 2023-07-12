@@ -14,10 +14,13 @@ class CreateController extends Controller
 {
     public function AddProduct()
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $category = DB::table('category')
             ->select('category.*')
             ->get();
-        return view('Admin/Create/createProduct', ['categories' => $category]);
+        return view('Admin/Create/createProduct', ['categories' => $category])->with($data);
     }
 
     public function Save_Product(Request $request)
@@ -48,8 +51,10 @@ class CreateController extends Controller
 
     public function AddCategory()
     {
-
-        return view('Admin/Create/createCategory');
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
+        return view('Admin/Create/createCategory')->with($data);
     }
 
     public function Save_Category(Request $request)

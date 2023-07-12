@@ -74,7 +74,7 @@
                                 <label for="Category" class="form-label">Category</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-toolbox"></i></span>
-                                    <select name="Category" id="Quantity" class="form-control form-control-sm" required>
+                                    <select name="Category" id="category" class="form-control form-control-sm" required>
                                         <option value="">None</option>
                                         @foreach($categories as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>

@@ -2,44 +2,44 @@
 @section('content')
 <style>
     .edit-form {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f2f2f2;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-.edit-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
+    .edit-form label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
 
-.edit-form input[type="text"],
-.edit-form input[type="email"],
-.edit-form textarea {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
+    .edit-form input[type="text"],
+    .edit-form input[type="email"],
+    .edit-form textarea {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
 
-.edit-form button[type="submit"] {
-    padding: 8px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
+    .edit-form button[type="submit"] {
+        padding: 8px 15px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
 
-.edit-form button[type="submit"]:hover {
-    background-color: #45a049;
-}
-
+    .edit-form button[type="submit"]:hover {
+        background-color: #45a049;
+    }
 </style>
+<link rel="stylesheet" href="{{asset('admin/css')}}/bootstrap.min.css">
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -88,6 +88,13 @@
                     <label for="age">Age:</label>
                     <input type="text" id="age" name="age" value="{{ $user[0]->age }}">
 
+                    <label for="sex">Gender:</label>
+                    <select name="gender" id="sex" class="form-control form-control-sm">
+                        <option value="">Select your Gender</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                    
                     <label for="address">Address:</label>
                     <textarea id="address" name="address">{{ $user[0]->address }}</textarea>
 

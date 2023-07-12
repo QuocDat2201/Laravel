@@ -75,7 +75,7 @@
                                 <label for="Category" class="form-label">Category</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-toolbox"></i></span>
-                                    <select name="Category" id="Quantity" class="form-control form-control-sm" required>
+                                    <select name="Category" id="category" class="form-control form-control-sm" required>
                                         <option value="">None</option>
                                         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($cat->id); ?>"><?php echo e($cat->name); ?></option>

@@ -52,13 +52,15 @@ class DashBoardController extends Controller
         $address = $request->input('address');
         $email = $request->input('email');
         $phone = $request->input('phone');
+        $gender = $request->input('gender');
         $dete = [
             'name' => $name,
             'age' => $age,
             'address' => $address,
             'email' => $email,
             'phone' => $phone,
-            'photo' => $photo
+            'photo' => $photo,
+            'sex' => $gender
         ];
 
         Users::find($id)->update($dete);

@@ -16,6 +16,9 @@ class EditController extends Controller
 {
     public function Edit_Product($id, Request $request)
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $products = DB::table('products')->find($id);
         $category = DB::table('category')
             ->select('category.*')
@@ -23,7 +26,7 @@ class EditController extends Controller
         $mul_pics = DB::table('images_product')->where('product_id', $id)
             ->select('images_product.*')
             ->get();
-        return view('admin/Edit/edit_product', ['products' => $products, 'categories' => $category, 'mul_pics' => $mul_pics]);
+        return view('admin/Edit/edit_product', ['products' => $products, 'categories' => $category, 'mul_pics' => $mul_pics])->with($data);
     }
 
     public function Update_Product(Request $request)
@@ -73,6 +76,7 @@ class EditController extends Controller
     public function Edit_Category($id)
     {
         $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first(),
             'categorys' => Category::find($id)
         ];
         return view('admin/Edit/edit_category')->with($data);

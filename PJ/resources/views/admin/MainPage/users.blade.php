@@ -73,28 +73,28 @@
                     <th>Role</th>
                 </tr>
             </thead>
-            @foreach($users as $user)
+            @foreach($users as $use)
             <tbody>
                 <tr>
-                    <td>{{$user->userid}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->age}}</td>
+                    <td>{{$use->userid}}</td>
+                    <td>{{$use->name}}</td>
+                    <td>{{$use->age}}</td>
                     <td>
-                        @if($user->sex == 1)
+                        @if($use->sex == 1)
                         Male
-                        @elseif($user->sex == 0)
+                        @elseif($use->sex == 0)
                         Female
                         @else
-                        ''
+
                         @endif
                     </td>
-                    <td>{{$user->phone}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->address}}</td>
+                    <td>{{$use->phone}}</td>
+                    <td>{{$use->email}}</td>
+                    <td>{{$use->address}}</td>
                     <td>
-                        @if($user->role_id == 1)
+                        @if($use->role_id == 1)
                         Admin
-                        @elseif($user->role_id == 2)
+                        @elseif($use->role_id == 2)
                         User
                         @endif
                     </td>
