@@ -32,6 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
+
                         <div class="mylogo">
                             <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
                         </div>
@@ -46,9 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
+                        <div style="float: right">
                         <nav class="icon__menu mobile-menu">
-                            <ul style="margin:30px  0px 0px 60px">
+                            <ul style="margin-top:35px">
                                 <li>
                                     <?php if(session()->has('username')): ?>
                                     <a style="color:black;display:block" href="<?php echo e(url('/account')); ?>"><i style="font-size: 25px;" class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -67,18 +69,24 @@
                                 </li>
                                 <li>
                                     <?php if(session()->has('username')): ?>
-                                    <a href="<?php echo e(url('pages/shoppingcart')); ?>" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
-                                    <ul class="dropdown">
-                                        <li style="background-color: #ff0000;"><a href="<?php echo e(url('/pages/shoppingcart')); ?>">giỏ
-                                                hàng tạm thời</a></li>
-                                        <li><a href="<?php echo e(url('/shop/paidcart')); ?>">paid shopping cart</a></li>
-                                    </ul>
+                                        <a href="<?php echo e(url('pages/shoppingcart')); ?>" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
+                                        <ul class="dropdown">
+                                            <li style="background-color: #ff0000;"><a
+                                                    href="<?php echo e(url('/pages/shoppingcart')); ?>">giỏ
+                                                    hàng tạm thời</a></li>
+                                            <li style="background-color: #ffcc00;"><a
+                                                    href="<?php echo e(url('/shop/savedcart')); ?>">giỏ
+                                                    hàng saved</a></li>
+                                            <li style="background-color: #00ff04;"><a
+                                                    href="<?php echo e(url('/shop/paidcart')); ?>">paid shopping cart</a></li>
+                                        </ul>
                                     <?php else: ?>
-                                    <a href="<?php echo e(url('login/signin')); ?>" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
+                                        <a href="<?php echo e(url('login/signin')); ?>" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
                                     <?php endif; ?>
-
                                     
                                     
 
@@ -86,6 +94,7 @@
                             </ul>
                         </nav>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -101,13 +110,7 @@
                         <ul>
                             <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
                             <li><a href="<?php echo e(url('/shop')); ?>">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="<?php echo e(url('/pages/aboutus')); ?>">About Us</a></li>
-                                    <li><a href="<?php echo e(url('/pages/shoppingcart')); ?>">Shopping Cart</a></li>
-
-                                </ul>
-                            </li>
+                            <li><a href="<?php echo e(url('/pages/aboutus')); ?>">About Us</a></li>
                             <li><a href="<?php echo e(url('/blog')); ?>">Blog</a></li>
                             <li><a href="<?php echo e(url('/contacts')); ?>">Contacts</a></li>
                         </ul>
@@ -135,8 +138,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="<?php echo e(asset('user')); ?>/img/footer-logo.png" alt=""></a>
+                        <div class="footer__logo_" align="center" style="margin-bottom:10px">
+                            <a href="<?php echo e(url('/')); ?>"><img style="width: 120px; height: 120px;" src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
+
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
 

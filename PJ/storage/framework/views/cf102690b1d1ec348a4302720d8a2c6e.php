@@ -21,7 +21,7 @@
                             data-setbg="<?php echo e(asset('user')); ?>/img/product/<?php echo e($item->photo); ?>">
                             
                             <ul class="product__hover">
-                                <li><a href="<?php echo e(url('shop/id/' . $item->id)); ?>"><img style="width:40px;height:40px"
+                                <li><a href="<?php echo e(url('shop/' . $item->id)); ?>"><img style="width:40px;height:40px"
                                             src="<?php echo e(asset('user')); ?>/img/icon/search.png" alt=""></a>
                                 </li>
                                 <li><a id="cart" class="addorder" data-id="<?php echo e($item->id); ?>" href=""><img
@@ -38,7 +38,7 @@
                         <div class="product__item__text">
                             <h6><?php echo e($item->name); ?></h6>
                             <a  data-id="<?php echo e($item->id); ?>" href="<?php echo e(url('/shop/buy/')); ?>/<?php echo e($item->id); ?>" class="btn btn-warning add-cart addorder"
-                                style="width:185px;border-radius:6px;" align="center">BUY</a>
+                                style="width:175px;border-radius:6px;" align="center">BUY</a>
                             
                             <h5>$<?php echo e($item->price); ?></h5>
                         </div>
@@ -56,6 +56,7 @@
             </div>
         </div>
     </div>
+
 <?php $__env->stopSection(); ?>
 <script>
     // $(function ad() {

@@ -50,10 +50,10 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul>
-                                                    <li><a href="{{url('/searchprice/1')}}">$0.00 - $50.00</a></li>
-                                                    <li><a href="{{url('/searchprice/2')}}">$50.00 - $100.00</a></li>
-                                                    <li><a href="{{url('/searchprice/3')}}">$100.00 - $150.00</a></li>                                             
-                                                    <li><a href="{{url('/searchprice/4')}}">150.00+</a></li>
+                                                    <li><a href="{{url('/searchprice/1')}}">$0.00 - $15.00</a></li>
+                                                    <li><a href="{{url('/searchprice/2')}}">$15.00 - $30.00</a></li>
+                                                    <li><a href="{{url('/searchprice/3')}}">$30.00 - $50.00</a></li>                                             
+                                                    <li><a href="{{url('/searchprice/4')}}">50.00+</a></li>
                                                 </ul>
                                             </div>
                                         </div>
