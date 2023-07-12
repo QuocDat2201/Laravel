@@ -36,8 +36,8 @@
                             <?php echo csrf_field(); ?>
                             <select id="Choose" name="Choose" class="form-select form-select-sm">
                                 <option>Status</option>
-                                <option value="<?php echo e(Request::url()); ?>?choose=delivered">Delivered</option>
-                                <option value="<?php echo e(Request::url()); ?>?choose=undelivered">Undelivered</option>
+                                <option value="<?php echo e(Request::url()); ?>?choose=paid">Paid order</option>
+                                <option value="<?php echo e(Request::url()); ?>?choose=unpaid">Unpaid order</option>
                             </select>
                         </form>
                     </div>
@@ -63,18 +63,23 @@
                     <th>Order ID</th>
                     <th>Username</th>
                     <th>Delivery To</th>
-                    <th>Delivery Status</th>
+                    <th>Payment Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php if($order->status == 1): ?>
                 <tr>
                     <td><?php echo e($order->orderid); ?></td>
                     <td><?php echo e($order->username); ?></td>
                     <td><?php echo e($order->address); ?></td>
-                    <td><?php echo e($order->delivered); ?></td>
+                    <td>
+                        <?php if($order->status == 1): ?>
+                            Order has been paid
+                        <?php elseif($order->status == 0): ?>
+                            Unpaid order
+                        <?php endif; ?>
+                    </td>
                     <td>
                         <a href="<?php echo e(url('/admin/order_details/'.$order->orderid)); ?>">
                             Order's detail
@@ -82,10 +87,15 @@
                     </td>
                 </tr>
                 <input type="hidden" name="orderid" value="<?php echo e($order->id); ?>">
-                <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo e($orders->links('pagination::bootstrap-5  ')); ?>
+
+            </div>
+        </div>
     </div>
     <?php $__env->stopSection(); ?>
 </body>

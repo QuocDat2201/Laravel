@@ -87,28 +87,6 @@
                                             <?php echo e($sum); ?>$
                                         </td>
                                     </tr>
-                                    <?php echo csrf_field(); ?>
-                                    <tr>
-                                        <td colspan="3"></td>
-                                        <form action="<?php echo e(url('/admin/delivered')); ?>" method="post">
-                                            <?php echo csrf_field(); ?>
-                                            <td style="width: 150px;">
-                                                <button class="btn btn-warning form-control form-control-sm">
-                                                    <i class="fas fa-check"></i> Delivered
-                                                </button>
-                                            </td>
-                                            <input type="hidden" name="id" value="<?php echo e($orders->orderid); ?>">
-                                        </form>
-                                        <form action="<?php echo e(url('/admin/undelivered')); ?>" method="post">
-                                            <?php echo csrf_field(); ?>
-                                            <td style="width: 160px;">
-                                                <button class="btn btn-danger form-control form-control-sm">
-                                                    <i class="fas fa-ban"></i> Undelivered
-                                                </button>
-                                            </td>
-                                            <input type="hidden" name="id" value="<?php echo e($orders->orderid); ?>">
-                                        </form>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

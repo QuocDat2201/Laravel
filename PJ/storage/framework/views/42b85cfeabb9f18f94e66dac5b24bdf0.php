@@ -107,13 +107,7 @@
                         <ul>
                             <li><a href="<?php echo e(url('/')); ?>">Home</a></li>
                             <li><a href="<?php echo e(url('/shop')); ?>">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="<?php echo e(url('/pages/aboutus')); ?>">About Us</a></li>
-                                    <li><a href="<?php echo e(url('/pages/shoppingcart')); ?>">Shopping Cart</a></li>
-
-                                </ul>
-                            </li>
+                            <li><a href="<?php echo e(url('/pages/aboutus')); ?>">About Us</a></li>
                             <li><a href="<?php echo e(url('/blog')); ?>">Blog</a></li>
                             <li><a href="<?php echo e(url('/contacts')); ?>">Contacts</a></li>
                         </ul>

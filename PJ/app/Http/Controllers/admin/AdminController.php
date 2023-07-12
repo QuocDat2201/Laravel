@@ -24,7 +24,7 @@ class AdminController extends Controller
         ];
 
 
-        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->where('orders.status', 1)->orderBy('orders.id', 'DESC')->take(6)
+        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->orderBy('orders.id', 'DESC')->take(6)
             ->join('account', 'users.account_id', '=', 'account.id')
             ->select(
                 'users.*',
@@ -37,7 +37,6 @@ class AdminController extends Controller
             ->get();
 
         $products = DB::table('products')->orderBy('id', 'DESC')->take(5)
-
             ->join('category', 'products.categogy_id', '=', 'category.id')->select('products.*', 'category.id as category_id', 'category.name as category_name')
             ->get();
         return view('Admin/MainPage/dashboard', ['products' => $products, 'orders' => $orders])->with($data);
@@ -55,8 +54,8 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->distinct('users', 'account')
-            ->get();
+            ->paginate(8);
+
 
         if (isset($_GET['sort_by'])) {
             $sort_by = $_GET['sort_by'];
@@ -68,13 +67,12 @@ class AdminController extends Controller
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->distinct('users', 'orders', 'account')
-                    ->get();
+                    ->paginate(8)->appends(request()->query());
             } elseif ($sort_by == 'name_za') {
                 $orders = Users::orderBy('account.name', 'Desc')
                     ->join('orders', 'users.id', '=', 'orders.user_id')
@@ -82,13 +80,12 @@ class AdminController extends Controller
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->distinct('users', 'orders', 'account')
-                    ->get();
+                    ->paginate(8)->appends(request()->query());
             } elseif ($sort_by == 'address_az') {
                 $orders = Users::orderBy('users.address', 'ASC')
                     ->join('orders', 'users.id', '=', 'orders.user_id')
@@ -96,12 +93,12 @@ class AdminController extends Controller
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->get();
+                    ->paginate(8)->appends(request()->query());
             } elseif ($sort_by == 'address_za') {
                 $orders = Users::orderBy('users.address', 'DESC')
                     ->join('orders', 'users.id', '=', 'orders.user_id')
@@ -109,44 +106,44 @@ class AdminController extends Controller
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->get();
+                    ->paginate(8)->appends(request()->query());
             }
         }
 
         if (isset($_GET['choose'])) {
             $choose = $_GET['choose'];
 
-            if ($choose == 'delivered') {
-                $orders = Users::where('orders.delivered', 'like', 'delivered%')
+            if ($choose == 'paid') {
+                $orders = Users::where('orders.status', '=', 1)
                     ->join('orders', 'users.id', '=', 'orders.user_id')
                     ->join('account', 'users.account_id', '=', 'account.id')
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->get();
-            } elseif ($choose == 'undelivered') {
-                $orders = Users::where('orders.delivered', 'like', '%undelivered%')
+                    ->paginate(8)->appends(request()->query());
+            } elseif ($choose == 'unpaid') {
+                $orders = Users::where('orders.status','=', 0)
                     ->join('orders', 'users.id', '=', 'orders.user_id')
                     ->join('account', 'users.account_id', '=', 'account.id')
                     ->select(
                         'users.*',
                         'orders.id as orderid',
-                        'orders.status as payment',
+                        'orders.status as status',
                         'orders.delivered as delivered',
                         'account.name as username',
                         'users.address as address',
                     )
-                    ->get();
+                    ->paginate(8)->appends(request()->query());
             }
         }
         return view('Admin/MainPage/orders', ['orders' => $orders]);
