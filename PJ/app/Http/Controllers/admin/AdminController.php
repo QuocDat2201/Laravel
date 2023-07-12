@@ -24,7 +24,7 @@ class AdminController extends Controller
         ];
 
 
-        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->orderBy('orders.id', 'DESC')->take(6)
+        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->where('orders.status', 1)->orderBy('orders.id', 'DESC')->take(6)
             ->join('account', 'users.account_id', '=', 'account.id')
             ->select(
                 'users.*',
@@ -34,7 +34,6 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->distinct('users', 'orders')
             ->get();
 
         $products = DB::table('products')->orderBy('id', 'DESC')->take(5)
@@ -56,7 +55,7 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->distinct('users', 'orders', 'account')
+            ->distinct('users', 'account')
             ->get();
 
         if (isset($_GET['sort_by'])) {
@@ -524,7 +523,7 @@ class AdminController extends Controller
     {
         $product_name = $request->get('search_product');
         $data = [
-            'products' => Products::where('name', 'like','%'. $product_name . '%')->get()
+            'products' => Products::where('name', 'like','%'. $product_name . '%')->paginate(5)->appends(request()->query())
         ];
         return view('admin/MainPage/product')->with($data);
     }
@@ -533,7 +532,7 @@ class AdminController extends Controller
     {
         $product_name = $request->get('search_product');
         $data = [
-            'products' => Products::where('name', 'like','%'. $product_name . '%')->get()
+            'products' => Products::where('name', 'like','%'. $product_name . '%')->paginate(5)->appends(request()->query())
         ];
         return view('admin/MainPage/management')->with($data);
     }
@@ -542,7 +541,7 @@ class AdminController extends Controller
     {
         $Category_name = $request->get('search_category');
         $data = [
-            'categorys' => Category::where('name', 'like', '%'. $Category_name . '%')->get()
+            'categorys' => Category::where('name', 'like', '%'. $Category_name . '%')->paginate(5)->appends(request()->query())
         ];
         return view('admin/MainPage/category')->with($data);
     }
@@ -561,7 +560,7 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->get();
+            ->paginate(5)->appends(request()->query());
         return view('admin/MainPage/orders', ['orders' => $orders]);
     }
 
@@ -583,7 +582,7 @@ class AdminController extends Controller
                 'users.email as email',
                 'users.id as userid'
             )
-            ->get();
+            ->paginate(5)->appends(request()->query());
         return view('admin/MainPage/users', ['users' => $users]);
     }
 
@@ -600,7 +599,7 @@ class AdminController extends Controller
                 'contacts.mess as message'
             )
             ->where('account.name', 'like','%'. $contactValue.'%' )->orWhere('users.email', 'like', '%'. $contactValue.'%' )
-            ->get();
+            ->paginate(5)->appends(request()->query());
         return view('admin/MainPage/contact', ['contacts' => $contact]);
     }
     public function logout(Request $request)

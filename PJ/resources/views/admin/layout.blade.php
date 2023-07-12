@@ -60,9 +60,9 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{url('/admin/home')}}" class="brand-link">
+            <a href="{{url('/')}}" class="brand-link">
                 <img src="{{asset('user')}}/img/logo.png" alt="Star Organic Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Star Organic Admin</span>
+                <span class="brand-text font-weight-light">Star Organic</span>
             </a>
 
             <!-- Sidebar -->
