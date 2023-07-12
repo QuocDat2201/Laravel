@@ -10,7 +10,8 @@ Route::group(['namespace'=>'user'], function(){//tạo đường dẫn chung
         
     
         Route::get('/addorder',[CartController::class,'addorder']);
-        
+        Route::get('/edit',[DashBoardController::class,'edit']);
+        Route::post('/save/{id}',[DashBoardController::class,'save']);
         
         
         Route::get('/123',[CartController::class,'test']);

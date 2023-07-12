@@ -1,5 +1,45 @@
 @extends('user.layout.layout')
 @section('content')
+<style>
+    .edit-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="email"],
+.edit-form textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.edit-form button[type="submit"] {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -23,7 +63,7 @@
         <div class="col-md-2">
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8"><img align="center" src="{{ asset('images/no-images.jpg') }}" alt="" style="width: 100px;height:100px; display:block;color: #fff;
+                <div class="col-md-8"><img align="center" src="{{ asset('images/bginfo1.jpg') }}" alt="" style="width: 100px;height:100px; display:block;color: #fff;
                                     position: absolute;bottom:20px">
                 </div>
                 <div class="col-md-2"></div>
@@ -39,45 +79,33 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <table align="center" width="400px">
-                <tr>
-                    <td style="text-align: left;">Name user :</td>
-                    <td style="text-align: right;">{{ $user[0]->name }}</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Age :</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ $user[0]->age }}</td>
+            <div class="edit-form">
+                <form method="post" action="{{url('/save')}}/{{$user[0]->id}}">
+                    @csrf
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ $user[0]->name }}">
 
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Address :</td>
-                    <td style="text-align: right;">
-                        {{ $user[0]->address }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Email :</td>
-                    <td style="text-align: right;">
-                        {{ $user[0]->email }}
-                    </td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">Phone :</td>
-                    <td style="text-align: right;">
-                        {{ $user[0]->phone }}
-                    </td>
-                </tr>
-                <tr>
-                    <td><a href="{{url('/edit')}}"><button>edit</button></a></td>
-                </tr>
-            </table>
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" value="{{ $user[0]->age }}">
+
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address">{{ $user[0]->address }}</textarea>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ $user[0]->email }}">
+
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" name="phone" value="{{ $user[0]->phone }}">
+
+                    <button type="submit">Save</button>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="user_id" value="{{$user[0]->id}}">
+                        </td>
+                    </tr>
+                </form>
+            </div>
+
         </div>
         <div class="col-md-3"></div>
     </div>
