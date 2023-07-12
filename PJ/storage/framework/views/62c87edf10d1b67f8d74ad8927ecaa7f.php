@@ -73,28 +73,28 @@
                     <th>Role</th>
                 </tr>
             </thead>
-            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $use): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <tbody>
                 <tr>
-                    <td><?php echo e($user->userid); ?></td>
-                    <td><?php echo e($user->name); ?></td>
-                    <td><?php echo e($user->age); ?></td>
+                    <td><?php echo e($use->userid); ?></td>
+                    <td><?php echo e($use->name); ?></td>
+                    <td><?php echo e($use->age); ?></td>
                     <td>
-                        <?php if($user->sex == 1): ?>
+                        <?php if($use->sex == 1): ?>
                         Male
-                        <?php elseif($user->sex == 0): ?>
+                        <?php elseif($use->sex == 0): ?>
                         Female
                         <?php else: ?>
-                        ''
+
                         <?php endif; ?>
                     </td>
-                    <td><?php echo e($user->phone); ?></td>
-                    <td><?php echo e($user->email); ?></td>
-                    <td><?php echo e($user->address); ?></td>
+                    <td><?php echo e($use->phone); ?></td>
+                    <td><?php echo e($use->email); ?></td>
+                    <td><?php echo e($use->address); ?></td>
                     <td>
-                        <?php if($user->role_id == 1): ?>
+                        <?php if($use->role_id == 1): ?>
                         Admin
-                        <?php elseif($user->role_id == 2): ?>
+                        <?php elseif($use->role_id == 2): ?>
                         User
                         <?php endif; ?>
                     </td>

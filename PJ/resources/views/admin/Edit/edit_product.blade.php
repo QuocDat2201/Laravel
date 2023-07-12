@@ -42,7 +42,7 @@
                                 <img src="{{asset('user/img/product')}}/{{$products->photo}}" alt="pics" style="width: 70px; height: 70px;">
                                 <br><br>
 
-                                <input type="file" class="form-control" id="Photo" name="Photo">
+                                <input type="file" class="form-control" id="Photo" name="Photo" accept="image/*">
                             </div>
                             <div class="mt-3">
                                 <label class="form-label" for="galary">Product's galary</label>
@@ -74,7 +74,7 @@
                                 <label for="Category" class="form-label">Category</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-toolbox"></i></span>
-                                    <select name="Category" id="Quantity" class="form-control form-control-sm" required>
+                                    <select name="Category" id="category" class="form-control form-control-sm" required>
                                         <option value="">None</option>
                                         @foreach($categories as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>

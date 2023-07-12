@@ -69,7 +69,7 @@
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?php echo e(asset('admin')); ?>/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?php echo e(asset('user/img/avatar')); ?>/<?php echo e($user->photo); ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block"><?php echo e(session('username')); ?></a>

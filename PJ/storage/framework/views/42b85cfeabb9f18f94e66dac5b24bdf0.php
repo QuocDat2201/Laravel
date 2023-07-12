@@ -7,7 +7,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FoodShop | Template</title>
+    <title>Star Organic</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -32,6 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
+
                         <div class="mylogo">
                             <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
                         </div>
@@ -46,9 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
+                        <div style="float: right">
                         <nav class="icon__menu mobile-menu">
-                            <ul style="margin:30px  0px 0px 60px">
+                            <ul style="margin-top:35px">
                                 <li>
                                     <?php if(session()->has('username')): ?>
                                     <a style="color:black;display:block" href="<?php echo e(url('/account')); ?>"><i style="font-size: 25px;" class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -93,6 +95,7 @@
                         </nav>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
         </div>
@@ -135,8 +138,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="<?php echo e(asset('user')); ?>/img/footer-logo.png" alt=""></a>
+                        <div class="footer__logo_" align="center" style="margin-bottom:10px">
+                            <a href="<?php echo e(url('/')); ?>"><img style="width: 120px; height: 120px;" src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
+
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
 
@@ -215,17 +219,18 @@
     <script src="<?php echo e(asset('user')); ?>/js/main.js"></script>
     <script src="<?php echo e(asset('user')); ?>/js/shopcart.js"></script>
     <div class="fix_tel">
+        
         <div class="ring-alo-phone ring-alo-green ring-alo-show" id="ring-alo-phoneIcon" style="right: 150px; bottom: -12px;">
             <div class="ring-alo-ph-circle"></div>
             <div class="ring-alo-ph-circle-fill"></div>
             <div class="ring-alo-ph-img-circle">
-                <a href="tel:0862054327"><img class="lazy" src="https://khomaythegioi.com/icon/goi.png" alt="G"></a>
+                <a href="tel:0336938524"><img class="lazy" src="https://khomaythegioi.com/icon/goi.png" alt="G"></a>
             </div>
         </div>
         <div class="tel">
             
-            <a href="tel:0862054327">
-                <p class="fone">0862054327</p>
+            <a href="tel:0336938524">
+                <p class="fone">0336938524</p>
                
             </a>
         </div>

@@ -20,7 +20,8 @@ class AdminController extends Controller
     {
         $data = [
             'users' => Users::count(),
-            'number' => Products::count()
+            'number' => Products::count(),
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
 
 
@@ -44,6 +45,10 @@ class AdminController extends Controller
 
     public function Orders()
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
+
         $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')
             ->join('account', 'users.account_id', '=', 'account.id')
             ->select(
@@ -54,6 +59,7 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
+            ->orderBy('orders.id', 'Desc')
             ->paginate(8);
 
 
@@ -146,11 +152,14 @@ class AdminController extends Controller
                     ->paginate(8)->appends(request()->query());
             }
         }
-        return view('Admin/MainPage/orders', ['orders' => $orders]);
+        return view('Admin/MainPage/orders', ['orders' => $orders])->with($data);
     }
 
     public function Order_Details($id)
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $order_products = DB::table('order_product')->where('order_id', $id)
             ->join('orders', 'order_product.order_id', '=', 'orders.id')
             ->join('products', 'order_product.product_id', '=', 'products.id')
@@ -178,11 +187,14 @@ class AdminController extends Controller
             ->first();
 
         
-        return view('Admin/MainPage/order_details', ['order_products' => $order_products], ['orders' => $orders]);
+        return view('Admin/MainPage/order_details', ['order_products' => $order_products], ['orders' => $orders])->with($data);
     }
 
     public function Product()
     { 
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $products = DB::table('products')->orderBy('id','Asc')
             ->join('category', 'products.categogy_id', '=', 'category.id')->select('products.*', 'category.id as category_id', 'category.name as category_name')
             ->paginate(5);
@@ -226,11 +238,14 @@ class AdminController extends Controller
                     ->paginate(5)->appends(request()->query());
             }
         }
-        return view('Admin/MainPage/product', ['products' => $products, 'category' => $category]);
+        return view('Admin/MainPage/product', ['products' => $products, 'category' => $category])->with($data);
     }
 
     public function Category()
-    {
+    {   
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $category = DB::table('category')
             ->select('category.*')
             ->get();
@@ -248,11 +263,14 @@ class AdminController extends Controller
                     ->get();
             }
         }
-        return view('Admin/MainPage/category', ['categorys' => $category]);
+        return view('Admin/MainPage/category', ['categorys' => $category])->with($data);
     }
 
     public function Management()
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $products = DB::table('products')
             ->join('category', 'products.categogy_id', '=', 'category.id')->select('products.*', 'category.id as category_id', 'category.name as category_name')
             ->paginate(5);
@@ -287,11 +305,14 @@ class AdminController extends Controller
                     ->paginate(5)->appends(request()->query());
             }
         }
-        return view('Admin/MainPage/management', ['products' => $products]);
+        return view('Admin/MainPage/management', ['products' => $products])->with($data);
     }
 
     public function Users()
-    {
+    {   
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $account = DB::table('account')
             ->join('role', 'account.role_id', 'role.id')
             ->join('users', 'account.id', 'users.account_id')
@@ -447,12 +468,14 @@ class AdminController extends Controller
                     ->paginate(8)->appends(request()->query());
             }
         }
-        return view('admin/MainPage/users', ['users' => $account]);
+        return view('admin/MainPage/users', ['users' => $account])->with($data);
     }
 
     public function Contact()
     {
-    
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
             $contact = DB::table('account')
             ->join('contacts', 'account.id', '=', 'contacts.account_id')
             ->join('users', 'account.id', '=', 'users.account_id')
@@ -493,7 +516,7 @@ class AdminController extends Controller
                     ->paginate(5)->appends(request()->query());
             }
         }
-        return view('admin/MainPage/contact', ['contacts' => $contact]);
+        return view('admin/MainPage/contact', ['contacts' => $contact])->with($data);
     }
 
     public function Delete_Product($id)
@@ -523,7 +546,8 @@ class AdminController extends Controller
             'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
             ->where('products.name', 'like','%'. $product_name . '%')->orwhere('category.name','like','%'.$product_name.'%')   
             ->select('products.*', 'category.name as category_name')
-            ->paginate(5)->appends(request()->query())
+            ->paginate(5)->appends(request()->query()),
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
             
         ];
         return view('admin/MainPage/product')->with($data);
@@ -536,7 +560,8 @@ class AdminController extends Controller
             'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
             ->where('products.name', 'like','%'. $product_name . '%')
             ->select('products.*', 'category.name as category_name')
-            ->paginate(5)->appends(request()->query())
+            ->paginate(5)->appends(request()->query()),
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
         return view('admin/MainPage/management')->with($data);
     }
@@ -545,13 +570,17 @@ class AdminController extends Controller
     {
         $Category_name = $request->get('search_category');
         $data = [
-            'categorys' => Category::where('name', 'like', '%'. $Category_name . '%')->paginate(5)->appends(request()->query())
+            'categorys' => Category::where('name', 'like', '%'. $Category_name . '%')->paginate(5)->appends(request()->query()),
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
         ];
         return view('admin/MainPage/category')->with($data);
     }
 
     public function Search_Orders(Request $request)
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $Orders_name = $request->get('search_orders');
         $orders = Users::where('account.name', 'like', '%' . $Orders_name . '%')
             ->join('orders', 'users.id', '=', 'orders.user_id')
@@ -565,11 +594,14 @@ class AdminController extends Controller
                 'users.address as address',
             )
             ->paginate(5)->appends(request()->query());
-        return view('admin/MainPage/orders', ['orders' => $orders]);
+        return view('admin/MainPage/orders', ['orders' => $orders])->with($data);
     }
 
     public function Search_Users(Request $request)
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $Username = $request->get('search_users');
         $users = DB::table('account')->where('account.name', 'like','%'. $Username . '%')
             ->join('role', 'account.role_id', 'role.id')
@@ -587,11 +619,14 @@ class AdminController extends Controller
                 'users.id as userid'
             )
             ->paginate(5)->appends(request()->query());
-        return view('admin/MainPage/users', ['users' => $users]);
+        return view('admin/MainPage/users', ['users' => $users])->with($data);
     }
 
     public function Search_Contact(Request $request)
     {
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->first()
+        ];
         $contactValue = $request->get('search_contact');
         $contact = DB::table('account')
             ->join('contacts', 'account.id', '=', 'contacts.account_id')
@@ -604,7 +639,7 @@ class AdminController extends Controller
             )
             ->where('account.name', 'like','%'. $contactValue.'%' )->orWhere('users.email', 'like', '%'. $contactValue.'%' )
             ->paginate(5)->appends(request()->query());
-        return view('admin/MainPage/contact', ['contacts' => $contact]);
+        return view('admin/MainPage/contact', ['contacts' => $contact])->with($data);
     }
     public function logout(Request $request)
     {
