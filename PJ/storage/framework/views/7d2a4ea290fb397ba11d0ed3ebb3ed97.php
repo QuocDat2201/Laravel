@@ -223,13 +223,13 @@
             <div class="ring-alo-ph-circle"></div>
             <div class="ring-alo-ph-circle-fill"></div>
             <div class="ring-alo-ph-img-circle">
-                <a href="tel:0862054327"><img class="lazy" src="https://khomaythegioi.com/icon/goi.png" alt="G"></a>
+                <a href="tel:0336938524"><img class="lazy" src="https://khomaythegioi.com/icon/goi.png" alt="G"></a>
             </div>
         </div>
         <div class="tel">
             
-            <a href="tel:0862054327">
-                <p class="fone">0862054327</p>
+            <a href="tel:0336938524">
+                <p class="fone">0336938524</p>
                
             </a>
         </div>

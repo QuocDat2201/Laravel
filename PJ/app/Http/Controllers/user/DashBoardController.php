@@ -23,7 +23,39 @@ use App\Models\Users;
 use Mail;
 
 class DashBoardController extends Controller
-{
+{   public function edit()
+    {   
+        $data = [
+            'user' => DB::table('users')->where('account_id', session('account_id'))->get(),
+        ];
+        
+        // $name = $request->input('name');
+        // $age = $request->input('age');
+        // $address = $request->input('address');
+        // $email = $request->input('email');
+        // $phone = $request->input('phone');
+        return view('/user/dashboard/edit')->with($data);
+    }
+    public function save($id,Request $request)
+    {   
+        $name = $request->input('name');
+        $age = $request->input('age');
+        $address = $request->input('address');
+        $email = $request->input('email');
+        $phone = $request->input('phone');
+        $dete = [
+            'name' =>$name , 
+            'age' => $age , 
+            'address'=>$address,
+            'email'=>$email,
+            'phone'=>$phone
+        ];
+        
+             Users::find($id)->update($dete);
+        
+        
+        return redirect('/account');
+    }
     public function send(Request $request)
     {
         $name = $request->input('name');
