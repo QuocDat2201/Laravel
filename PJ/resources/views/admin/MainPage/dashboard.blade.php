@@ -36,7 +36,7 @@
                 <!-- /.col -->
                 <div class="col-md-6">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><a href="#" class="fas fa-users"></a></span>
+                        <span class="info-box-icon bg-warning elevation-1"><a href="{{url('/admin/userlist')}}" class="fas fa-users"></a></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">Total Members</span>
@@ -81,17 +81,15 @@
                                         </tr>
                                     </thead>
                                     @foreach($orders as $order)
-                                        @if($order->status == 1)
-                                            <tbody>
-                                                <input type="hidden" name="order_id" ">
-                                                <td>{{$order->username}}</td>
-                                                <td>{{$order->email}}</td>
-                                                <td>{{$order->address}}</td>
-                                                <td>
-                                                    <a href=" {{url('/admin/order_details/'.$order->id)}}">Order's detail</a>
-                                                </td>
-                                            </tbody>
-                                        @endif
+                                        <tbody>
+                                            <input type="hidden" name="order_id" ">
+                                                    <td>{{$order->username}}</td>
+                                                    <td>{{$order->email}}</td>
+                                                    <td>{{$order->address}}</td>
+                                                    <td>
+                                                        <a href=" {{url('/admin/order_details/'.$order->id)}}">Order's detail</a>
+                                            </td>
+                                        </tbody>
                                     @endforeach
                                 </table>
                             </div>

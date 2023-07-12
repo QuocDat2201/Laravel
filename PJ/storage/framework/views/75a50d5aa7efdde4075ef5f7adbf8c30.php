@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 
 <section class="hero">
@@ -63,7 +62,11 @@
                                 src="<?php echo e(asset('user')); ?>/img/icon/cart1.png" alt=""></a>
                             </li>
                         </ul>
-                        <span style="background-color: rgb(255, 0, 0);font-size:20px;color:aliceblue;">het hang</span>
+                        <?php if($item->quantity == 0): ?>
+                        <span style="background-color: rgb(255, 0, 0);font-size:20px;color:aliceblue;">het
+                            hang</span>
+                    <?php else: ?>
+                    <?php endif; ?>
                     </div> 
                     <div class="product__item__text" style="display: block">
                         <h6><?php echo e($item->name); ?></h6>

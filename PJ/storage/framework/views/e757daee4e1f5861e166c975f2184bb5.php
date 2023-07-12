@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
     <!-- Breadcrumb Section End -->
 
@@ -37,12 +36,13 @@
                                                     <img style="width:100px;height:100px"
                                                         src=" <?php echo e(asset('user')); ?>/img/product/<?php echo e($item['product']->photo); ?>"
                                                         alt="">
+                                                    
                                                 </div>
                                                 <div class="product__cart__item__text">
                                                     <h6> <?php echo e($item['product']->name); ?></h6>
-                                                    <h5>$ <?php echo e($item['product']->price); ?></h5>
+                                                    <h5>$ <?php echo e($item['product']->price); ?></h5><small>(quantity <?php echo e($item['quantity_kho']); ?>)</small>
                                                 </div>
-
+                                                
                                             </td>
                                             <td class="quantity__item">
                                                 <div class="quantity">
@@ -53,12 +53,12 @@
                                                 </div>
                                             </td>
                                             <td><b>$ <?php echo e($item['product']->price * $item['quantity']); ?></b></td>
-                                            <td class="cart__close">
+                                            <td class="">
                                                 <a href="<?php echo e(url('removeorder/' . $item['product']->id)); ?>">
-                                                    <i class="fa fa-trash"></i>
+                                                    <i class="btn btn-danger fa fa-trash"></i>
                                                 </a>
                                                 <a href="" class="cart_update" data-id="<?php echo e($id); ?>" >
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                    <i class="btn btn-success fa fa-upload" aria-hidden="true"></i>
                                                 </a>
                                             </td>
                                             <?php
@@ -66,13 +66,18 @@
                                                 $id++;
                                             ?>
                                         </tr>
+                                        
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php else: ?>
                                     <tr>
                                         <td>Chu co san pham duoc them vao gio</td>
                                     </tr>
                                 <?php endif; ?>
-
+                                    <tr>
+                                        <td></td>
+                                    <td style="color:red"><b><?php echo e(session('error')); ?></b></td>
+                                    <td></td>
+                                    </tr>
                             </tbody>
                         </table>
                     </div>
@@ -90,13 +95,6 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="cart__discount">
-                        <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit">Apply</button>
-                        </form>
-                    </div>
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
@@ -108,7 +106,7 @@
                                 </span>
                             </li>
                         </ul>
-                        <button id="noButton" > <a href="<?php echo e(url('shop/payment')); ?>"  id="payment" class="primary-btn2">Payment</a></button>
+                       <div> <button id="noButton" style="border:1px;display:block;width:300px;height:50px;background-color:red"  > <a href="<?php echo e(url('shop/payment')); ?>"  id="payment" style="color:aliceblue;font-size:30px " >Payment</a></button></div>
                        
                     </div>
                 </div>

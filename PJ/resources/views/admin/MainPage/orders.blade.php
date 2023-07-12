@@ -36,8 +36,8 @@
                             @csrf
                             <select id="Choose" name="Choose" class="form-select form-select-sm">
                                 <option>Status</option>
-                                <option value="{{Request::url()}}?choose=delivered">Delivered</option>
-                                <option value="{{Request::url()}}?choose=undelivered">Undelivered</option>
+                                <option value="{{Request::url()}}?choose=paid">Paid order</option>
+                                <option value="{{Request::url()}}?choose=unpaid">Unpaid order</option>
                             </select>
                         </form>
                     </div>
@@ -63,18 +63,23 @@
                     <th>Order ID</th>
                     <th>Username</th>
                     <th>Delivery To</th>
-                    <th>Delivery Status</th>
+                    <th>Payment Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($orders as $order)
-                @if($order->status == 1)
                 <tr>
                     <td>{{$order->orderid}}</td>
                     <td>{{$order->username}}</td>
                     <td>{{$order->address}}</td>
-                    <td>{{$order->delivered}}</td>
+                    <td>
+                        @if($order->status == 1)
+                            Order has been paid
+                        @elseif($order->status == 0)
+                            Unpaid order
+                        @endif
+                    </td>
                     <td>
                         <a href="{{url('/admin/order_details/'.$order->orderid)}}">
                             Order's detail
@@ -82,10 +87,14 @@
                     </td>
                 </tr>
                 <input type="hidden" name="orderid" value="{{$order->id}}">
-                @endif
                 @endforeach
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-md-12">
+                {{ $orders->links('pagination::bootstrap-5  ') }}
+            </div>
+        </div>
     </div>
     @endsection
 </body>

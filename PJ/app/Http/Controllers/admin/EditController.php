@@ -120,23 +120,4 @@ class EditController extends Controller
         return redirect('admin/management');
     }
 
-    public function Delivered(Request $request){
-        $id = $request->input('id');
-        $delivered = [
-            'delivered' => 'delivered'
-        ];
-
-        Orders::find($id)->update($delivered);
-        return redirect('/admin/orderslist');
-    }
-
-    public function Undelivered(Request $request){
-        $id = $request->input('id');
-        $undelivered = [
-            'delivered' => 'undelivered'
-        ];
-
-        Orders::find($id)->update($undelivered);
-        return redirect('/admin/orderslist');
-    }
 }

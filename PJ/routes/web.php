@@ -106,8 +106,6 @@ Route::group(['middleware' => 'admin'], function () {
         route::post('/save_user',[CreateController::class,'Save_User']);
     
         Route::get('/logout', [AdminController::class, 'logout']);
-        route::post('/delivered',[EditController::class,'Delivered']);
-        route::post('/undelivered',[EditController::class,'Undelivered']);
     });
 });
 // Khi người dùng không phải là quản trị viên và cố gắng truy cập vào "/admin/home", họ sẽ bị chuyển hướng đến đường dẫn gốc (ở đây là "/") hoặc bạn có thể chuyển hướng đến trang thông báo lỗi khác tuỳ theo yêu cầu của bạn.
