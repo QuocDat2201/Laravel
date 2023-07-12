@@ -523,7 +523,11 @@ class AdminController extends Controller
     {
         $product_name = $request->get('search_product');
         $data = [
-            'products' => Products::where('name', 'like','%'. $product_name . '%')->paginate(5)->appends(request()->query())
+            'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
+            ->where('products.name', 'like','%'. $product_name . '%')   
+            ->select('products.*', 'category.name as category_name')
+            ->paginate(5)->appends(request()->query())
+            
         ];
         return view('admin/MainPage/product')->with($data);
     }
@@ -532,7 +536,10 @@ class AdminController extends Controller
     {
         $product_name = $request->get('search_product');
         $data = [
-            'products' => Products::where('name', 'like','%'. $product_name . '%')->paginate(5)->appends(request()->query())
+            'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
+            ->where('products.name', 'like','%'. $product_name . '%')
+            ->select('products.*', 'category.name as category_name')
+            ->paginate(5)->appends(request()->query())
         ];
         return view('admin/MainPage/management')->with($data);
     }
