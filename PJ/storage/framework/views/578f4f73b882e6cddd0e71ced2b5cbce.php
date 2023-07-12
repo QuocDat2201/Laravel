@@ -32,6 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
+
                         <div class="mylogo">
                             <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
                         </div>
@@ -46,9 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
+                        <div style="float: right">
                         <nav class="icon__menu mobile-menu">
-                            <ul style="margin:30px  0px 0px 60px">
+                            <ul style="margin-top:35px">
                                 <li>
                                     <?php if(session()->has('username')): ?>
                                     <a style="color:black;display:block" href="<?php echo e(url('/account')); ?>"><i style="font-size: 25px;" class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -93,6 +95,7 @@
                         </nav>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
         </div>
@@ -135,8 +138,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="<?php echo e(asset('user')); ?>/img/footer-logo.png" alt=""></a>
+                        <div class="footer__logo_">
+                            <a href="<?php echo e(url('/')); ?>"><img style="width: 70px; height: 70px;" src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
+
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
 
