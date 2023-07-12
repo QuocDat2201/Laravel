@@ -42,7 +42,7 @@
                                 <img src="{{asset('user/img/product')}}/{{$products->photo}}" alt="pics" style="width: 70px; height: 70px;">
                                 <br><br>
 
-                                <input type="file" class="form-control" id="Photo" name="Photo">
+                                <input type="file" class="form-control" id="Photo" name="Photo" accept="image/*">
                             </div>
                             <div class="mt-3">
                                 <label class="form-label" for="galary">Product's galary</label>

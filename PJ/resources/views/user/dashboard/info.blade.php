@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6">
             <div style="width:100%;height:190px">
-                <img align="center" src="{{ asset('images/bginfo1.jpg') }}" alt="" style="width: 500px;height:150px; display:block;margin-left: auto; margin-right: auto;">
+                <img align="center" src="{{asset('user/img/avatar')}}/{{$user[0]->photo}}" alt="" style="width: 500px;height:150px; display:block;margin-left: auto; margin-right: auto;">
 
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="col-md-2">
             <div class="row">
                 <div class="col-md-2"></div>
-                <div class="col-md-8"><img align="center" src="{{ asset('images/no-images.jpg') }}" alt="" style="width: 100px;height:100px; display:block;color: #fff;
+                <div class="col-md-8"><img align="center" src="{{asset('user/img/avatar')}}/{{$user[0]->photo}}" alt="" style="width: 100px;height:100px; display:block;color: #fff;
                                     position: absolute;bottom:20px">
                 </div>
                 <div class="col-md-2"></div>

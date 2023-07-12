@@ -23,12 +23,13 @@ use App\Models\Users;
 use Mail;
 
 class DashBoardController extends Controller
-{   public function edit()
-    {   
+{
+    public function edit()
+    {
         $data = [
             'user' => DB::table('users')->where('account_id', session('account_id'))->get(),
         ];
-        
+
         // $name = $request->input('name');
         // $age = $request->input('age');
         // $address = $request->input('address');
@@ -36,24 +37,33 @@ class DashBoardController extends Controller
         // $phone = $request->input('phone');
         return view('/user/dashboard/edit')->with($data);
     }
-    public function save($id,Request $request)
-    {   
+    public function save($id, Request $request)
+    {
+        $photo = $request->input('current_photo');
+        if ($request->hasfile('Photo')) {
+            $file = $request->file('Photo');
+
+            $request->Photo->move(public_path('user/img/avatar'), $file->getClientOriginalName());
+            $photo = $file->getClientOriginalName();
+        }
+
         $name = $request->input('name');
         $age = $request->input('age');
         $address = $request->input('address');
         $email = $request->input('email');
         $phone = $request->input('phone');
         $dete = [
-            'name' =>$name , 
-            'age' => $age , 
-            'address'=>$address,
-            'email'=>$email,
-            'phone'=>$phone
+            'name' => $name,
+            'age' => $age,
+            'address' => $address,
+            'email' => $email,
+            'phone' => $phone,
+            'photo' => $photo
         ];
-        
-             Users::find($id)->update($dete);
-        
-        
+
+        Users::find($id)->update($dete);
+
+
         return redirect('/account');
     }
     public function send(Request $request)
@@ -126,7 +136,7 @@ class DashBoardController extends Controller
         return view('user/dashboard/blogrm2');
     }
     public function contacts()
-    {   
+    {
         return view('user/dashboard/contacts');
     }
     public function aboutus()
@@ -151,9 +161,9 @@ class DashBoardController extends Controller
         view('user/dashboard/shop/layout')->with($data);
         return view('user/dashboard/shop/shopdetails')->with($data);
     }
-    
 
-    
+
+
 
     public function signin()
     {
@@ -297,6 +307,7 @@ class DashBoardController extends Controller
 
         $id_acc = Account::orderBy('id', 'desc')->take(1)->value('id');
         $user = [
+            'photo' => 'No_Image.png',
             'account_id' => $id_acc,
             'email' => $request->input('email'),
         ];
@@ -344,132 +355,134 @@ class DashBoardController extends Controller
         return view('/')->with($data);
     }
 
-/* QuocDat Comment hehe*/
-/* Check lai xem */
-/* khong thay gi het */
-/* Thanh tUna Comment hehe*/
-/* QuocDat Comment hehe*/
-/* Check lai xem */
-/* khong thay gi het */
-/* Thanh tUna Comment hehe*/
-public function shop(Request $request)
+    /* QuocDat Comment hehe*/
+    /* Check lai xem */
+    /* khong thay gi het */
+    /* Thanh tUna Comment hehe*/
+    /* QuocDat Comment hehe*/
+    /* Check lai xem */
+    /* khong thay gi het */
+    /* Thanh tUna Comment hehe*/
+    public function shop(Request $request)
     {
         $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
         $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
         $query->orderBy('created_at', 'desc');
         // Lấy danh sách sản phẩm đã phân trang
-        
-        $products = $query->paginate($perPage);   
+
+        $products = $query->paginate($perPage);
         $data = [
-                 'category' => Category::get(),
-                 //'products' => Products::where('name', 'like', '%' . $keyword . '%')->get()
-              ];
-        
-        
+            'category' => Category::get(),
+            //'products' => Products::where('name', 'like', '%' . $keyword . '%')->get()
+        ];
+
+
         view('user/dashboard/shop/layout')->with($data);
         //Truyền danh sách sản phẩm và các tham số phân trang tới view
-        
-        
+
+
         return view('user/dashboard/shop/shop', [
             'products' => $products,
         ])->with($data);
     }
     public function search(Request $request)
-    {   $keyword = $request->get('search');
+    {
+        $keyword = $request->get('search');
         $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
         $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
         $query->where('name', 'like', '%' . $keyword . '%')->get();
         // Lấy danh sách sản phẩm đã phân trang
-        
-        $products = $query->paginate($perPage);   
+
+        $products = $query->paginate($perPage);
         $data = [
-                 'category' => Category::get(),
-              ];
-        
-        
+            'category' => Category::get(),
+        ];
+
+
         view('user/dashboard/shop/layout');
         //Truyền danh sách sản phẩm và các tham số phân trang tới view
-        
-        
+
+
         return view('user/dashboard/shop/shop', [
             'products' => $products,
         ])->with($data);
     }
     public function searchprice($id)
-    {   
-        if($id==1){
+    {
+        if ($id == 1) {
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
-        // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',15)->get();
-        // Lấy danh sách sản phẩm đã phân trang
-        
-            $products = $query->paginate($perPage);   
+            // Sắp xếp sản phẩm theo ngày tạo
+            $query->where('price', '<', 15)->get();
+            // Lấy danh sách sản phẩm đã phân trang
+
+            $products = $query->paginate($perPage);
             $data = [
-                 'category' => Category::get(),
-              ];
-                  view('user/dashboard/shop/layout');
-                  return view('user/dashboard/shop/shop', [
-                      'products' => $products,
-                  ])->with($data);
-        }elseif($id==2){
+                'category' => Category::get(),
+            ];
+            view('user/dashboard/shop/layout');
+            return view('user/dashboard/shop/shop', [
+                'products' => $products,
+            ])->with($data);
+        } elseif ($id == 2) {
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
-        // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',30)->where('price','>',15)->get();
-        // Lấy danh sách sản phẩm đã phân trang
-        
-            $products = $query->paginate($perPage);   
+            // Sắp xếp sản phẩm theo ngày tạo
+            $query->where('price', '<', 30)->where('price', '>', 15)->get();
+            // Lấy danh sách sản phẩm đã phân trang
+
+            $products = $query->paginate($perPage);
             $data = [
-                 'category' => Category::get(),
-              ];
-                  view('user/dashboard/shop/layout');
-                  return view('user/dashboard/shop/shop', [
-                      'products' => $products,
-                  ])->with($data);
-        }elseif($id==3){
+                'category' => Category::get(),
+            ];
+            view('user/dashboard/shop/layout');
+            return view('user/dashboard/shop/shop', [
+                'products' => $products,
+            ])->with($data);
+        } elseif ($id == 3) {
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
-        // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',50)->where('price','>',30)->get();
-        // Lấy danh sách sản phẩm đã phân trang
-        
-            $products = $query->paginate($perPage);   
+            // Sắp xếp sản phẩm theo ngày tạo
+            $query->where('price', '<', 50)->where('price', '>', 30)->get();
+            // Lấy danh sách sản phẩm đã phân trang
+
+            $products = $query->paginate($perPage);
             $data = [
-                 'category' => Category::get(),
-              ];
-                  view('user/dashboard/shop/layout');
-                  return view('user/dashboard/shop/shop', [
-                      'products' => $products,
-                  ])->with($data);
-        }else{
-            $perPage = 8; 
+                'category' => Category::get(),
+            ];
+            view('user/dashboard/shop/layout');
+            return view('user/dashboard/shop/shop', [
+                'products' => $products,
+            ])->with($data);
+        } else {
+            $perPage = 8;
             $query = Products::query();
-            $query->where('price','>',50)->get();
-            $products = $query->paginate($perPage);   
+            $query->where('price', '>', 50)->get();
+            $products = $query->paginate($perPage);
             $data = [
-                 'category' => Category::get(),
-              ];
-                  view('user/dashboard/shop/layout');
-                  return view('user/dashboard/shop/shop', [
-                      'products' => $products,
-                  ])->with($data);
+                'category' => Category::get(),
+            ];
+            view('user/dashboard/shop/layout');
+            return view('user/dashboard/shop/shop', [
+                'products' => $products,
+            ])->with($data);
         }
     }
     public function product_categogy($id)
-    {    $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
+    {
+        $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
         $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
         $query->join('category', 'products.categogy_id', '=', 'category.id')
-        ->where('category.id', $id)
-        ->select('products.id', 'products.name', 'products.quantity', 'products.price', 'products.photo')
-        ->get();
+            ->where('category.id', $id)
+            ->select('products.id', 'products.name', 'products.quantity', 'products.price', 'products.photo')
+            ->get();
         // Lấy danh sách sản phẩm đã phân trang
-        
-        $products = $query->paginate($perPage);   
-        
+
+        $products = $query->paginate($perPage);
+
         $data = [
             'category' => Category::all(),
             'imgs' => Images_product::where('product_id', '=', $id)->get(),
@@ -478,7 +491,7 @@ public function shop(Request $request)
                 ->where('category.id', $id)
                 ->select('products.id', 'products.name', 'products.quantity', 'products.price', 'products.photo')
                 ->get(),
-            'products'=>$products,
+            'products' => $products,
         ];
         //   print_r($data['products']->toArray());
         view('user/dashboard/shop/layout')->with($data);
