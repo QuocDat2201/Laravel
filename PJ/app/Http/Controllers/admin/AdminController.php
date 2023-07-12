@@ -521,7 +521,7 @@ class AdminController extends Controller
         $product_name = $request->get('search_product');
         $data = [
             'products' => Products::join('category', 'products.categogy_id', '=', 'category.id')
-            ->where('products.name', 'like','%'. $product_name . '%')   
+            ->where('products.name', 'like','%'. $product_name . '%')->orwhere('category.name','like','%'.$product_name.'%')   
             ->select('products.*', 'category.name as category_name')
             ->paginate(5)->appends(request()->query())
             
