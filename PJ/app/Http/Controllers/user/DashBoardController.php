@@ -371,7 +371,7 @@ public function shop(Request $request)
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',50)->get();
+            $query->where('price','<',15)->get();
         // Lấy danh sách sản phẩm đã phân trang
         
             $products = $query->paginate($perPage);   
@@ -386,7 +386,7 @@ public function shop(Request $request)
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',100)->where('price','>',50)->get();
+            $query->where('price','<',30)->where('price','>',15)->get();
         // Lấy danh sách sản phẩm đã phân trang
         
             $products = $query->paginate($perPage);   
@@ -401,7 +401,7 @@ public function shop(Request $request)
             $perPage = 8; // Số sản phẩm hiển thị trên mỗi trang
             $query = Products::query();
         // Sắp xếp sản phẩm theo ngày tạo
-            $query->where('price','<',150)->where('price','>',100)->get();
+            $query->where('price','<',50)->where('price','>',30)->get();
         // Lấy danh sách sản phẩm đã phân trang
         
             $products = $query->paginate($perPage);   
@@ -415,7 +415,7 @@ public function shop(Request $request)
         }else{
             $perPage = 8; 
             $query = Products::query();
-            $query->where('price','>',150)->get();
+            $query->where('price','>',50)->get();
             $products = $query->paginate($perPage);   
             $data = [
                  'category' => Category::get(),

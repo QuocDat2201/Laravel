@@ -17,7 +17,7 @@ Route::group(['namespace'=>'user'], function(){//tạo đường dẫn chung
 
         Route::get('/',[DashBoardController::class,'index']);
 
-        Route::post('/send',[DashBoardController::class,'send'])->middleware('throttle:2,1');
+        Route::post('/send',[DashBoardController::class,'send'])->middleware('throttle:2,60');
         Route::get('/success',[DashBoardController::class,'success']);
         Route::get('/blog',[DashBoardController::class,'blog']);
         Route::get('/index',[DashBoardController::class,'index'])->name('home');
@@ -66,7 +66,7 @@ Route::group(['namespace'=>'user'], function(){//tạo đường dẫn chung
         Route::get('shoppingcart',[CartController::class,'index']);
         Route::get('shopdetails',[DashBoardController::class,'shopdetails']); 
     });
-});
+}); 
 Route::group(['middleware' => 'admin'], function () {
     // Các route cho phần quản trị tại đây
     route::group(['namespace'=>'admin','prefix'=>'admin'], function(){

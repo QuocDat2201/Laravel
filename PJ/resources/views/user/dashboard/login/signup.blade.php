@@ -29,7 +29,7 @@
                 <i class="bx bx-lock-alt"></i>
             </div>
             <div class="input-field">
-                <input type="text" class="input" name="email" placeholder="Email" required>
+                <input type="email" class="input" name="email" placeholder="Email" required>
                 <i class='bx bx-envelope'></i>
             </div>
             <div class="input-field">
