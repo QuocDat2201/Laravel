@@ -13,11 +13,12 @@
                         style=" background-image: linear-gradient(rgb(255, 255, 255),rgb(255, 255, 255),rgb(255, 255, 255))">
 
                         <div class="">
+                            
                             <table class="update_cart-url" border-radius="3px" data-url=<?php echo e(url('updatecart')); ?>>
                                 <tr>
+                                    <td style="">order paid new</td>
                                     <td></td>
                                     <td></td>
-                                    <td>total</td>
                                     <td></td>
 
                                 </tr>
@@ -93,15 +94,15 @@
     </section>
     <div class="row">
         <div class="col-md-4">
-
-        </div>
-        <div class=" col-md-4">
             <div align="center" class="continue__btn">
-                <a class="btn btn-dark" href="<?php echo e(url('shop')); ?>">Continue Shopping</a>
+                <a class="btn btn-warning" href="<?php echo e(url('shop')); ?>">Continue Shopping</a>
             </div>
         </div>
-        <div class="col-md-4">
-
+        <div class=" col-md-3">
+            
+        </div>
+        <div class="col-md-5">
+            
         </div>
     </div>
     </div>

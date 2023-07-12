@@ -24,6 +24,7 @@ class CartController extends Controller
         $data = [
             'cart' => $request->session()->get('cart')
         ];
+        
         // dd($data );
         // echo $data['cart'][0]['product']['name'];
         // dd(isset(session('error')));
@@ -64,7 +65,7 @@ class CartController extends Controller
                     'name' => DB::table('products')->where('id', '=', $item->product_id)->value('name'),
                     'price' => DB::table('products')->where('id', '=', $item->product_id)->value('price'),
                     'quantity' => $item->quantity_product_order,
-                    'quantity_kho'=> DB::table('products')->where('id', '=', $item->product_id)->value('quantity'),
+                    'quantity_kho' => DB::table('products')->where('id', '=', $item->product_id)->value('quantity'),
                     'photo' => DB::table('products')->where('id', '=', $item->product_id)->value('photo'),
                 ];
                 $id++;
@@ -92,9 +93,9 @@ class CartController extends Controller
         ];
         Orders::create($data);
         $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->take(1)->get();
-        
 
-        $order_id=$order_id->value('id');
+
+        $order_id = $order_id->value('id');
         // dd($order_id);
         $cart = $request->session()->get('cart');
 
@@ -168,25 +169,25 @@ class CartController extends Controller
         };
         if (!$request->session()->has('cart')) {
             $cart = array();
-            $quantity_kho=Products::find($request->id);
-            $quantity_kho=$quantity_kho->quantity;
+            $quantity_kho = Products::find($request->id);
+            $quantity_kho = $quantity_kho->quantity;
             array_push($cart, [
                 'product' => Products::find($request->id),
                 'quantity' => 1,
-                'quantity_kho'=>$quantity_kho,
+                'quantity_kho' => $quantity_kho,
             ]);
             $request->session()->put('cart', $cart);
         } else {
             $cart = $request->session()->get('cart');
             $index = $this->exists($request->id, $cart);
             if ($index == -1) {
-                $quantity_kho=Products::find($request->id);
-            $quantity_kho=$quantity_kho->quantity;
+                $quantity_kho = Products::find($request->id);
+                $quantity_kho = $quantity_kho->quantity;
                 array_push($cart, [
                     'product' => Products::find($request->id),
                     'quantity' => 1,
-                    'quantity_kho'=>$quantity_kho,
-                'id'=>$request->id
+                    'quantity_kho' => $quantity_kho,
+                    'id' => $request->id
 
                 ]);
             } else {
@@ -278,13 +279,14 @@ class CartController extends Controller
     public function updatesavedcart(Request $request)
     {
         $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
-      
+
         $order_id = DB::table('orders')->where('user_id', '=', $user_id)->where('status', '=', 0)->orderBy('id', 'desc')->first();
         $data = [
             'quantity_product_order' => $request->quantity,
         ];
+        
         $id_order_products = DB::table('order_product')->where('order_id', $order_id->id)->where('product_id', $request->id);
-        $id_order_products=$id_order_products->value('id');
+        $id_order_products = $id_order_products->value('id');
         // dd($data);
         Order_product::find($id_order_products)->update($data);
         $order_id = $order_id->id;
@@ -307,6 +309,14 @@ class CartController extends Controller
                 'photo' => DB::table('products')->where('id', '=', $item->product_id)->value('photo'),
             ];
             $id++;
+            $quantity_product = Products::find($item->product_id);
+            $quantity_product = $quantity_product->quantity;
+            $request->session()->forget('er');
+            if ($item->quantity_product_order > $quantity_product) {
+                $request->session()->put('er', 'ERORR QUANTITY ');
+                return redirect('shop/savedcart');
+            }
+            $request->session()->forget('er');
         };
         $data = [
             'cart' => $product,
@@ -325,9 +335,9 @@ class CartController extends Controller
         $id = 0;
         foreach ($order_product as $item) {
             $id_order_product = Order_product::where('product_id', '=', $item['product']->id)->where('order_id', '=', $order_id->id)->get();
-            $id_order_product=$id_order_product[0]->product_id;
+            $id_order_product = $id_order_product[0]->product_id;
             // $id_order_product=$id_order_product->value('id');
-           
+
             if ($id > 0) {
                 foreach ($product as $x) {
                     if ($x['id'] == $item->product_id) {
@@ -342,8 +352,13 @@ class CartController extends Controller
                 'quantity' => $item->quantity_product_order,
                 'photo' => DB::table('products')->where('id', '=', $item->product_id)->value('photo'),
             ];
-            $quantity_product = Products::find(3);
-            $quantity_product= $quantity_product->quantity;
+            $quantity_product = Products::find($item->product_id);
+            $quantity_product = $quantity_product->quantity;
+            if ($item->quantity_product_order > $quantity_product) {
+                $request->session()->put('er', 'ERORR QUANTITY ');
+                return redirect('shop/savedcart');
+            }
+            $request->session()->forget('er');
             $data1 = [
                 'quantity' => $quantity_product - $item->quantity_product_order,
             ];
@@ -353,7 +368,7 @@ class CartController extends Controller
         };
 
         //_______
-       
+
 
         // $data = [
         //     'user_id' => $user_id,
@@ -379,13 +394,14 @@ class CartController extends Controller
         foreach ($cart as $item) {
             // dd($cart);
             $quantity_product = Products::find($item['product']->id);
-            $quantity_product= $quantity_product->quantity;
+            $quantity_product = $quantity_product->quantity;
             // dd($quantity_product);
-                
-            if(($item['quantity'])>$quantity_product ){
-                
+
+            if (($item['quantity']) > $quantity_product) {
+
                 return redirect()->back()->with('er', 'ERRORR Quantyti');
             }
+            $request->session()->forget('er');
         }
         $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
         $order = [
@@ -396,9 +412,9 @@ class CartController extends Controller
         Orders::create($order);
 
         // $user_id = DB::table('users')->where('account_id', '=', session('account_id'))->value('id');
-        $order_id = DB::table('orders')->orderBy('id','desc')->where('user_id', '=', $user_id)->where('status', '=', 0)->value('id');
+        $order_id = DB::table('orders')->orderBy('id', 'desc')->where('user_id', '=', $user_id)->where('status', '=', 0)->value('id');
         $currentDate = Carbon::now()->toDateString();
-        
+
         foreach ($cart as $item) {
             $id_order_product = Order_product::where('product_id', '=', $item['product']->id)->where('order_id', '=', $order_id)->value('id');
             $data = [
@@ -408,7 +424,7 @@ class CartController extends Controller
             ];
             Order_product::create($data);
             $quantity_product = Products::find($item['product']->id);
-            $quantity_product=$quantity_product->quantity;
+            $quantity_product = $quantity_product->quantity;
             $data = [
                 'quantity' => $quantity_product - $item['quantity'],
             ];
@@ -419,7 +435,7 @@ class CartController extends Controller
             'status' => 1,
             'update_at' => $currentDate,
         ];
-            // dd( $order_id);
+        // dd( $order_id);
         Orders::find($order_id)->update($data);
 
         // $data = [

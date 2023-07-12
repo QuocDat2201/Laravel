@@ -84,8 +84,8 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn">
-                                <a href="<?php echo e(url('shop')); ?>">Continue Shopping</a>
+                            <div align="center" class="continue__btn">
+                                <a class="btn btn-warning" href="<?php echo e(url('shop')); ?>">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
