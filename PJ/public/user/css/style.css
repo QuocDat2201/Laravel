@@ -32,8 +32,9 @@
 
 html,
 body {
+
 	height: 100%;
-	font-family: "Nunito Sans", sans-serif;
+	font-family: "Open Sans";
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -537,7 +538,7 @@ e
 	display: none;
 }
 .header__menu ul li a {
-	font-size: 18px;
+	font-size: 22px;
 	color: #111111;
 	display: block;
 	font-weight: 600;

@@ -94,7 +94,7 @@ class DashBoardController extends Controller
         return view('user/dashboard/blogrm2');
     }
     public function contacts()
-    {
+    {   
         return view('user/dashboard/contacts');
     }
     public function aboutus()
@@ -279,12 +279,12 @@ class DashBoardController extends Controller
 
 
         $id_user = Users::orderBy('id', 'desc')->take(1)->value('id');
-        $order = [
-            'user_id' => $id_user,
-            'status' => 0,
-        ];
+        // $order = [
+        //     'user_id' => $id_user,
+        //     'status' => 0,
+        // ];
 
-        Orders::create($order);
+        // Orders::create($order);
 
         return redirect('/');
     }

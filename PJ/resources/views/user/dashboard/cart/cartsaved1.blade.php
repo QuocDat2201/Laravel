@@ -4,56 +4,64 @@
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
-        <div class="container" >
+        <div class="container">
             <div class="row">
-                <div class="col-md-8" style=" background-image: linear-gradient(rgb(255, 255, 255),rgb(255, 255, 255),rgb(255, 255, 255))">
+                <div class="col-md-8">
                     <div class="shopping__cart__table">
-                        <table class="table table-sm update_cart-url" border-radius="3px" data-url={{ url('updatecart') }}>
-                            <thead style="background-color: rgb(131, 255, 100)">
-                                <tr>
+
+
+                        <table class="uupdate_cart-url" border-radius="1px" data-url={{ url('updatesavedcart') }}>
+                            <thead style="height:10px; background-color: rgb(253, 255, 111)">
+                                <tr style="height:10px">
                                     <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th align="center">Total</th>
-                                    {{-- <th>Action</th> --}}
+                                    <th>Quantity </th>
+                                    <th>Total</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php
-                                    $total=0;
-                                    $id=0;
+                                    $total = 0;
+                                    $id = 0;
                                 @endphp
                                 @if (isset($cart))
                                     @foreach ($cart as $item)
-                                    
+                                        <tr>
+
                                             <td class="product__cart__item">
                                                 <div class="product__cart__item__pic">
                                                     <img style="width:100px;height:100px"
                                                         src=" {{ asset('user') }}/img/product/{{ $item['photo'] }}"
                                                         alt="">
+
                                                 </div>
                                                 <div class="product__cart__item__text">
                                                     <h6> {{ $item['name'] }}</h6>
-                                                    <h5>$ {{ $item['price'] }}</h5>
+                                                    <h5>$ {{ $item['price'] }}</h5><small>(quantity
+                                                        {{ $item['quantity_kho'] }})</small>
                                                 </div>
+
+
 
                                             </td>
                                             <td class="quantity__item">
                                                 <div class="quantity">
                                                     <div class="pro-qty-2">
-                                                        <input class="qunatity" type="text"
+                                                        <input class="qunatityy" type="text"
                                                             value="{{ $item['quantity'] }}">
                                                     </div>
                                                 </div>
                                             </td>
                                             <td><b>$ {{ $item['price'] * $item['quantity'] }}</b></td>
-                                            {{-- <td class="cart__close">
-                                                <a href="{{ url('removeorder/' . $item['id']) }}">
-                                                    <i class="fa fa-trash"></i>
+                                            <td class="cart__closen">
+                                                <a href="{{ url('removeordersave/' . $item['id']) }}">
+                                                    <i class="fa fa-trash btn btn-danger"></i>
                                                 </a>
-                                                <a href="" class="cart_update" data-id="{{$id}}" >
-                                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                                <a class="fa fa-upload btn btn-success saved_cart_update"
+                                                    data-id="{{ $item['id'] }}" href="{{ url('updatesavedcart') }}">
+                                                    {{-- <i  class="fa fa-upload btn btn-success" aria-hidden="true"></i> --}}
                                                 </a>
-                                            </td> --}}
+                                            </td>
                                             @php
                                                 $total += $item['price'] * $item['quantity'];
                                                 $id++;
@@ -62,7 +70,8 @@
                                     @endforeach
                                 @else
                                     <tr>
-                                        <td>Chu co san pham duoc mua</td>
+                                        <td>without products</td>
+                                        <td></td>
                                     </tr>
                                 @endif
 
@@ -70,36 +79,31 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class=" col-md-6">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
                                 <a href="{{ url('shop') }}">Continue Shopping</a>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                           
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="cart__discount">
-                        <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit">Apply</button>
-                        </form>
-                    </div>
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Total 
-                                 <span>
+                            <li>Total
+                                <span>
                                     @php
-                                        echo "$ ".$total;
+                                        echo "$ " . $total;
                                     @endphp
                                 </span>
                             </li>
                         </ul>
-                            <button class="btn btn-success" style=" width:300px;"  >Paid</button>
+                        <button id="noButton" style="border:1px"> <a href="{{ url('shop/paymentsavedcart') }}" id="payment"
+                                class="primary-btn2" style="display:block">Payment</a></button>
+
                     </div>
                 </div>
             </div>

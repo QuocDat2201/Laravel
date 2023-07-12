@@ -32,6 +32,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
+
                         <div class="mylogo">
                             <a href="{{ url('/') }}"><img src="{{ asset('user') }}/img/logo.png" alt=""></a>
                         </div>
@@ -46,9 +47,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" >
+                        <div style="float: right">
                         <nav class="icon__menu mobile-menu">
-                            <ul style="margin:30px  0px 0px 60px">
+                            <ul style="margin-top:35px">
                                 <li>
                                     @if (session()->has('username'))
                                     <a style="color:black;display:block" href="{{ url('/account') }}"><i style="font-size: 25px;" class="fa fa-user-circle-o" aria-hidden="true"></i>
@@ -66,18 +68,24 @@
                                 </li>
                                 <li>
                                     @if (session()->has('username'))
-                                    <a href="{{ url('pages/shoppingcart') }}" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
-                                    <ul class="dropdown">
-                                        <li style="background-color: #ff0000;"><a href="{{ url('/pages/shoppingcart') }}">giỏ
-                                                hàng tạm thời</a></li>
-                                        <li><a href="{{ url('/shop/paidcart') }}">paid shopping cart</a></li>
-                                    </ul>
+                                        <a href="{{ url('pages/shoppingcart') }}" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
+                                        <ul class="dropdown">
+                                            <li style="background-color: #ff0000;"><a
+                                                    href="{{ url('/pages/shoppingcart') }}">giỏ
+                                                    hàng tạm thời</a></li>
+                                            <li style="background-color: #ffcc00;"><a
+                                                    href="{{ url('/shop/savedcart') }}">giỏ
+                                                    hàng saved</a></li>
+                                            <li style="background-color: #00ff04;"><a
+                                                    href="{{ url('/shop/paidcart') }}">paid shopping cart</a></li>
+                                        </ul>
                                     @else
-                                    <a href="{{ url('login/signin') }}" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
+                                        <a href="{{ url('login/signin') }}" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
                                     @endif
-
                                     {{-- <a href="#"><img src="{{asset('user')}}/img/icon/heart.png" alt=""></a> --}}
                                     {{-- <div class="price">$0.00</div> --}}
 
@@ -85,6 +93,7 @@
                             </ul>
                         </nav>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -100,13 +109,7 @@
                         <ul>
                             <li><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{ url('/shop') }}">Shop</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="{{ url('/pages/aboutus') }}">About Us</a></li>
-                                    <li><a href="{{ url('/pages/shoppingcart') }}">Shopping Cart</a></li>
-
-                                </ul>
-                            </li>
+                            <li><a href="{{ url('/pages/aboutus') }}">About Us</a></li>
                             <li><a href="{{ url('/blog') }}">Blog</a></li>
                             <li><a href="{{ url('/contacts') }}">Contacts</a></li>
                         </ul>
@@ -134,8 +137,9 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer__about">
-                        <div class="footer__logo">
-                            <a href="#"><img src="{{ asset('user') }}/img/footer-logo.png" alt=""></a>
+                        <div class="footer__logo_">
+                            <a href="{{ url('/') }}"><img style="width: 70px; height: 70px;" src="{{ asset('user') }}/img/logo.png" alt=""></a>
+
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
 

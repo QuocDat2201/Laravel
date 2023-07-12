@@ -10,7 +10,7 @@ class Orders extends Model
     protected $primarykey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'user_id', 'delivered','status',
+        'user_id', 'delivered','status','update_at'
     ];
 
     public function order_product(){

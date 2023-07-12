@@ -8,14 +8,12 @@ $(document).ready(function () {
         //     type:"GET",
         //     url:url,
         //     data: {id:id,quantity:quantity},
-
         //     success :function(data){
         //         if(data.code=200){
         //             $('body').html(data.cart_component);
         //         }
         //     },
         //     error :function(){
-
         //     },
     });
     $('.cart_update').on('click', function (e) {
@@ -23,6 +21,26 @@ $(document).ready(function () {
         let url = $('.update_cart-url').data('url');
         let id = $(this).data('id');
         let quantity = $(this).parents('tr').find('input.qunatity').val();
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { id: id, quantity: quantity },
+
+            success: function (data) {
+                if (data.code = 200) {
+                    $('body').html(data.cart_component);
+                }
+            },
+            error: function () {
+
+            },
+        })
+    });
+    $('.saved_cart_update').on('click', function (e) {
+        e.preventDefault(); // Now nothing will happen
+        let url = $('.uupdate_cart-url').data('url');
+        let id = $(this).data('id');
+        let quantity = $(this).parents('tr').find('input.qunatityy').val();
         $.ajax({
             type: "GET",
             url: url,
@@ -72,43 +90,49 @@ $(document).ready(function () {
 //   notification.appendChild(htmlBlock);
 //   notification.textContent = 'Bạn đã chọn "No"';
 // });
-
 var noButton = document.getElementById('noButton');
 var notification = document.getElementById('notification');
 
 noButton.addEventListener('click', function () {
-//     // Ẩn thông báo nếu đang hiển thị
+    if(session('er')){
+        return -2;
+    }
+  // Kiểm tra điều kiện trước khi thực hiện hàm
+//   if (!sesion('error')) {
+    // Ẩn thông báo nếu đang hiển thị
     notification.style.display = 'none';
 
-//     // Xóa nội dung thông báo
+    // Xóa nội dung thông báo
     notification.innerHTML = '';
 
-//     // Tạo phần tử HTML mới cho icon dấu tích xanh
+    // Tạo phần tử HTML mới cho icon dấu tích xanh
     var successIcon = document.createElement('i');
     successIcon.classList.add('fas', 'fa-check-circle', 'success-icon');
 
-//     // Tạo phần tử HTML mới cho nút tắt
+    // Tạo phần tử HTML mới cho nút tắt
     var closeButton = document.createElement('button');
     closeButton.textContent = 'X';
     closeButton.classList.add('close-button');
 
-//     // Tạo phần tử HTML mới cho thông báo
+    // Tạo phần tử HTML mới cho thông báo
     var notificationContent = document.createElement('div');
     notificationContent.innerHTML = '<p>Successful payment</p>';
     notificationContent.appendChild(successIcon);
     notificationContent.appendChild(closeButton);
 
-//     // Thêm các lớp CSS từ Bootstrap cho thông báo và định dạng nút tắt
+    // Thêm các lớp CSS từ Bootstrap cho thông báo và định dạng nút tắt
     notification.classList.add('alert', 'alert-success', 'success-message');
     closeButton.classList.add('btn', 'btn-danger', 'close-button-style');
 
-//     // Chèn nội dung thông báo vào phần tử thông báo
+    // Chèn nội dung thông báo vào phần tử thông báo
     notification.appendChild(notificationContent);
 
-//     // Hiển thị thông báo
+    // Hiển thị thông báo
     notification.style.display = 'block';
-
+//   }
 });
+
+
 document.addEventListener('click', function (event) {
     if (event.target.classList.contains('close-button')) {
         // Ẩn thông báo và làm mới lại nội dung

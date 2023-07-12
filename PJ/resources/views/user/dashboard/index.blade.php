@@ -63,7 +63,11 @@
                                 src="{{ asset('user') }}/img/icon/cart1.png" alt=""></a>
                             </li>
                         </ul>
-                        <span style="background-color: rgb(255, 0, 0);font-size:20px;color:aliceblue;">het hang</span>
+                        @if ($item->quantity == 0)
+                        <span style="background-color: rgb(255, 0, 0);font-size:20px;color:aliceblue;">het
+                            hang</span>
+                    @else
+                    @endif
                     </div> 
                     <div class="product__item__text" style="display: block">
                         <h6>{{ $item->name }}</h6>
