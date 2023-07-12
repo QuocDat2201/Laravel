@@ -137,8 +137,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="footer__about">
-                        <div class="footer__logo_">
-                            <a href="{{ url('/') }}"><img style="width: 70px; height: 70px;" src="{{ asset('user') }}/img/logo.png" alt=""></a>
+                        <div class="footer__logo_" align="center" style="margin-bottom:10px">
+                            <a href="{{ url('/') }}"><img style="width: 120px; height: 120px;" src="{{ asset('user') }}/img/logo.png" alt=""></a>
 
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
