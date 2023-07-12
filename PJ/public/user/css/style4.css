@@ -23,6 +23,13 @@ form{
     left: 100px;
     top: 90px;
 }
+input[name="name"] {
+    border: none;
+    position: relative;
+    top:18px;
+    font-size: 30px;
+    color: #fff;
+}
 .container{
     width: 350px;
     display: flex;
@@ -38,13 +45,12 @@ header{
     font-family:"Ink Free","MV Boli",sans-serif;
     font-style: italic;
     font-weight: 900;
-    border-radius:50% 50% 50% 50% / 50% 50% 50% 50% ;
 }
 .input-field{
     display: flex;
     flex-direction: column;
 }
-input {
+input{
     height: 38px;
     width: 80%;
     border:none;
@@ -112,6 +118,7 @@ textarea::-webkit-scrollbar-thumb {
     transition: 0.3s;
     position: relative;
     left: 30px;
+    color: rgb(18, 102, 18);
 }
 .water-submit{
     width: 60px;
@@ -145,6 +152,29 @@ textarea::-webkit-scrollbar-thumb {
     background-image: url("../img/OIP1.jpg");
     background-position: center; 
     background-repeat: no-repeat;
-    background-attachment: fixed;
     background-size: cover ;
+}
+.top-header{
+    position: relative;
+    width: 200px;
+    height: 70px;
+    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+    25px 35px 20px rgba(0, 0, 0, 0.05),
+    25px 30px 30px rgba(0, 0, 0, 0.05),
+    inset -20px -20px 25px rgba(255, 255, 255, 0.9);
+    border-radius:50% 50% 50% 50% / 50% 50% 50% 50% ;
+    left: 60px;
+    top: 70px;
+}
+.water-border1{
+    position: relative;
+    width:  150px;
+    height: 88px;
+    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+    25px 35px 20px rgba(0, 0, 0, 0.05),
+    25px 30px 30px rgba(0, 0, 0, 0.05),
+    inset -20px -20px 25px rgba(255, 255, 255, 0.9);
+    border-radius:50% 50% 50% 50% / 50% 50% 50% 50% ;
+    right: 100px;
+    bottom: 170px;
 }

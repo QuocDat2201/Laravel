@@ -10,14 +10,18 @@
 <body>
     <div class="water-border">
     </div>
-    <form action="{{url('user/edit')}}">
+    <form action="{{url('/save')}}/{{$user[0]->id}}" method="post">
+    @csrf
     <div class="container">
             <div class="top-header">
                 <header>{{session('username')}}'Profile</header>
             </div>
+            <div class="water-border1">
+                <input type="text" class="other-input" name="name" id="input1" value="{{ $user[0]->name }}" onfocus="handleInputFocus(this)" onblur="handleInputBlur(this)" data-default="{{ $user[0]->name}}">
+            </div>
             <div class="input-field">
-                <lable for="name">Name :</lable>
-                <input type="text" name="name" id="input1" value="{{ $user[0]->name }}" onfocus="handleInputFocus(this)" onblur="handleInputBlur(this)" data-default="{{ $user[0]->name }}">
+                <lable for="age">Age :</lable>
+                <input type="text" name="age" id="input1" value="{{ $user[0]->age }}" onfocus="handleInputFocus(this)" onblur="handleInputBlur(this)" data-default="{{ $user[0]->age }}">
                 <i class='bx bx-expand-horizontal' ></i>
             </div>
             <div class="input-field">
@@ -37,9 +41,10 @@
             </div>
             <div class="input-field">
                 <div class="water-submit">
-                    <button type="submit" class="submit" name="update" value="{{$user[0]->id}}">Update</button>
+                    <button type="submit" class="submit">Update</button>
                 </div>
             </div>
+            <input type="hidden" name="user_id" value="{{$user[0]->id}}">
         </div> 
     </form>
 </body>
