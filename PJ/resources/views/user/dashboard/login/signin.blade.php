@@ -15,11 +15,6 @@
             <div class="top-header">
                 <span>Have an account?&nbsp;<label><a href="{{url('login/signup')}}">Sign up</a></label> </span>
                 <header>Login</header>
-                @if(session('error'))
-                <div class="alert alert-danger">
-                    <p align="center" style="color:red">{{ session('error') }}</p>                   
-                </div>
-                @endif
             </div>
             <div class="input-field">
                 <input type="text" class="input" name="name" placeholder="Username" required>
