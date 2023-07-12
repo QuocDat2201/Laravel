@@ -139,7 +139,7 @@
                 <div class="col-md-3">
                     <div class="footer__about">
                         <div class="footer__logo_">
-                            <a href="<?php echo e(url('/')); ?>"><img style="width: 70px; height: 70px;" src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
+                            <a href="<?php echo e(url('/')); ?>"><img style="width: 100px; height: 100px;" src="<?php echo e(asset('user')); ?>/img/logo.png" alt=""></a>
 
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>

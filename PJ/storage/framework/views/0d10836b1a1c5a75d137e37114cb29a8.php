@@ -47,7 +47,7 @@
                     </tr>
                     <tr >
                         <td style="text-align: left;">Age :</td>
-                        <td ><?php echo e($user[0]->age); ?></td>
+                        <td style="text-align: right;"><?php echo e($user[0]->age); ?></td>
 
                     </tr>
                     <tr >

@@ -48,7 +48,7 @@
                     </tr>
                     <tr >
                         <td style="text-align: left;">Age :</td>
-                        <td >{{ $user[0]->age }}</td>
+                        <td style="text-align: right;">{{ $user[0]->age }}</td>
 
                     </tr>
                     <tr >
