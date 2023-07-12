@@ -39,10 +39,10 @@
                                 <input type="text" placeholder="Name" name="name">
                             </div>
                             <div class="col-md-7">
-                                <input type="text" placeholder="Email" name="email">
+                                <input type="email" placeholder="Email" name="email">
                             </div>
                             <div class="col-md-12">
-                                <input type="text" placeholder="Phone Number" name="phone">
+                                <input type="tel" placeholder="Phone Number" name="phone">
                             </div>
                             
                             <div class="col-md-12">

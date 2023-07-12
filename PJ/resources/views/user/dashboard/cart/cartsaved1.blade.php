@@ -74,14 +74,18 @@
                                         <td></td>
                                     </tr>
                                 @endif
+                                <tr>
+                                    <td></td>
+                                    <td style="color:red"><b>{{ session('er') }}</b></td>
+                                </tr>
 
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn">
-                                <a href="{{ url('shop') }}">Continue Shopping</a>
+                            <div align="center" class="continue__btn">
+                                <a class="btn btn-warning" href="{{ url('shop') }}">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -101,8 +105,8 @@
                                 </span>
                             </li>
                         </ul>
-                        <button id="noButton" style="border:1px"> <a href="{{ url('shop/paymentsavedcart') }}" id="payment"
-                                class="primary-btn2" style="display:block">Payment</a></button>
+                        <button id="noButton" style="border:1px"> <a href="{{ url('shop/paymentsavedcart') }}"
+                                id="payment" class="primary-btn2" style="display:block">Payment</a></button>
 
                     </div>
                 </div>
