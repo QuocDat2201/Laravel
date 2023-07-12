@@ -27,10 +27,13 @@ Route::group(['namespace'=>'user'], function(){//tạo đường dẫn chung
         Route::get('/blogrm',[DashBoardController::class,'blogrm']);
         Route::get('/blogrm1',[DashBoardController::class,'blogrm1']);
         Route::get('/blogrm2',[DashBoardController::class,'blogrm2']);
-        
         Route::get('/searchprice/{id}',[DashBoardController::class,'searchprice']);
+
         Route::get('/updatecart',[CartController::class,'updatecart']);
+        Route::get('/updatesavedcart',[CartController::class,'updatesavedcart']);
         Route::get('/removeorder/{id}',[CartController::class,'remove']);
+        Route::get('/removeordersave/{id}',[CartController::class,'removesave']);
+
         Route::group(['prefix'=>'shop'],function(){
             Route::get('/',[DashBoardController::class,'shop']);
             Route::get('/id/{id}',[DashBoardController::class,'details']);
@@ -38,7 +41,9 @@ Route::group(['namespace'=>'user'], function(){//tạo đường dẫn chung
             Route::get('/buy/{id}',[CartController::class,'buy']);
             Route::get('/savecart',[CartController::class,'savecart']);//chuc nang
             Route::get('/paidcart',[CartController::class,'layoutpaidcart']);// hien thi giao dien
+            Route::get('/savedcart',[CartController::class,'layoutsavedcart']);
             Route::get('/payment',[CartController::class,'payment']);
+            Route::get('/paymentsavedcart',[CartController::class,'paymentsavedcart']);
 
         });
 

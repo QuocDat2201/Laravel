@@ -1,7 +1,7 @@
 @extends('user.dashboard.shop.layout')
 @section('show')
     <div class="product__details__pic">
-        <div class="row">
+        <div class="row addorderr" data-url={{ url('addorder') }}>
             <div class=" col-md-1">
                 <ul class="nav nav-tabs" role="tablist" style="">
                     <li class="nav-item">
@@ -47,7 +47,7 @@
                     <br>
                     <button href="{{ url('/shop/buy/')}}{{$product->id}}"  style="width:220px;border-radius:6px;vertical-align: bottom; " align="center"
                         class="btn btn-warning">Mua</button>
-                    <a href="{{ url('addorder/' . $product->id) }}"><img
+                    <a class="addorder" data-id="{{ $product->id }}" href="{{ url('addorder/' . $product->id) }}"><img
                             style="width:40px;height:40px;background-color:rgb(236, 179, 10);border-radius:5px"
                             src="{{ asset('user') }}/img/icon/cart1.png" alt="{{ $product->name }}"></a>
                     <br>
@@ -80,7 +80,7 @@
                                     <li><a href="{{ url('shop/' . $item->id) }}"><img style="width:40px;height:40px"
                                                 src="{{ asset('user') }}/img/icon/search.png" alt=""></a>
                                     </li>
-                                    <li><a id="cart" href="{{ url('addorder/' . $item->id) }}"><img
+                                    <li><a class="addorder" data-id="{{ $item->id }}" href="{{ url('addorder/' . $item->id) }}"><img
                                                 style="width:40px;height:40px" src="{{ asset('user') }}/img/icon/cart1.png"
                                                 alt="{{ $item->name }}"></a>
                                     </li>
@@ -94,7 +94,7 @@
                             <div class="product__item__text" style="display: block">
                                 <h6>{{ $item->name }}</h6>
                                 <a href="{{ url('/shop/buy/')}}{{$item->id}}" class="add-cart">
-                                    <button type="button" style="width:185px;border-radius:6px;display:block "
+                                    <button type="button" style="width:175px;border-radius:6px;display:block "
                                         align="center" class="btn btn-warning " >BUY</button> </a>
                                 {{-- <i class="fa fa-shopping-basket" aria-hidden="true"></i> --}}
                                 <h5>${{ $item->price }}</h5>
