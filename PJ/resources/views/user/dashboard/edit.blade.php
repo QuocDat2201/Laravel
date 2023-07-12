@@ -14,7 +14,7 @@
     @csrf
     <div class="container">
             <div class="top-header">
-                <header>{{session('username')}}'Profile</header>
+                <header>Edit {{session('username')}}</header>
             </div>
             <div class="water-border1">
                 <input type="text" class="other-input" name="name" id="input1" value="{{ $user[0]->name }}" onfocus="handleInputFocus(this)" onblur="handleInputBlur(this)" data-default="{{ $user[0]->name}}">
