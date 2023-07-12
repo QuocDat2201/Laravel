@@ -67,18 +67,24 @@
                                 </li>
                                 <li>
                                     <?php if(session()->has('username')): ?>
-                                    <a href="<?php echo e(url('pages/shoppingcart')); ?>" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
-                                    <ul class="dropdown">
-                                        <li style="background-color: #ff0000;"><a href="<?php echo e(url('/pages/shoppingcart')); ?>">giỏ
-                                                hàng tạm thời</a></li>
-                                        <li><a href="<?php echo e(url('/shop/paidcart')); ?>">paid shopping cart</a></li>
-                                    </ul>
+                                        <a href="<?php echo e(url('pages/shoppingcart')); ?>" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
+                                        <ul class="dropdown">
+                                            <li style="background-color: #ff0000;"><a
+                                                    href="<?php echo e(url('/pages/shoppingcart')); ?>">giỏ
+                                                    hàng tạm thời</a></li>
+                                            <li style="background-color: #ffcc00;"><a
+                                                    href="<?php echo e(url('/shop/savedcart')); ?>">giỏ
+                                                    hàng saved</a></li>
+                                            <li style="background-color: #00ff04;"><a
+                                                    href="<?php echo e(url('/shop/paidcart')); ?>">paid shopping cart</a></li>
+                                        </ul>
                                     <?php else: ?>
-                                    <a href="<?php echo e(url('login/signin')); ?>" style="color:black"><i style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
-                                    <a style="color:black" href=""></a><br>Cart
+                                        <a href="<?php echo e(url('login/signin')); ?>" style="color:black"><i
+                                                style="font-size: 25px;" class="fa fa-shopping-basket"></i></a>
+                                        <a style="color:black" href=""></a><br>Cart
                                     <?php endif; ?>
-
                                     
                                     
 

@@ -24,7 +24,7 @@ class AdminController extends Controller
         ];
 
 
-        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->orderBy('orders.id', 'DESC')->take(6)
+        $orders = Users::join('orders', 'users.id', '=', 'orders.user_id')->where('orders.status', 1)->orderBy('orders.id', 'DESC')->take(6)
             ->join('account', 'users.account_id', '=', 'account.id')
             ->select(
                 'users.*',
@@ -34,7 +34,6 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->distinct('users', 'orders')
             ->get();
 
         $products = DB::table('products')->orderBy('id', 'DESC')->take(5)
@@ -56,7 +55,7 @@ class AdminController extends Controller
                 'account.name as username',
                 'users.address as address',
             )
-            ->distinct('users', 'orders', 'account')
+            ->distinct('users', 'account')
             ->get();
 
         if (isset($_GET['sort_by'])) {
