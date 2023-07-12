@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Exceptions;
 use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
 use Throwable;
 
 class Handler extends ExceptionHandler
