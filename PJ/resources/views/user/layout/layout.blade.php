@@ -218,6 +218,7 @@
     <script src="{{ asset('user') }}/js/main.js"></script>
     <script src="{{ asset('user') }}/js/shopcart.js"></script>
     <div class="fix_tel">
+        
         <div class="ring-alo-phone ring-alo-green ring-alo-show" id="ring-alo-phoneIcon" style="right: 150px; bottom: -12px;">
             <div class="ring-alo-ph-circle"></div>
             <div class="ring-alo-ph-circle-fill"></div>
